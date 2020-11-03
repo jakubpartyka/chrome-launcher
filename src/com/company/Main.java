@@ -1,8 +1,10 @@
 package com.company;
 
+import javax.swing.*;
+
 public class Main {
 
     public static void main(String[] args) {
-	// this is an empty project
+        SwingUtilities.invokeLater(new GUI());
     }
 }
