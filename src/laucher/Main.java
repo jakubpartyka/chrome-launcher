@@ -1,17 +1,16 @@
 package laucher;
 
 import javax.swing.*;
+import java.io.IOException;
 
 public class Main {
-
     public static void main(String[] args) {
-      SwingUtilities.invokeLater(new GUI());
-//        FileReader reader = new FileReader(".cl.cfg");
-//
-//        Properties p=new Properties();
-//        p.load(reader);
-//
-//        p.setProperty("a","3");
-//        p.store(new FileWriter(".cl.cfg"),"test");
+        try {
+            Data.init();
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Failed to start program, please check console logs","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        SwingUtilities.invokeLater(new GUI());
     }
 }

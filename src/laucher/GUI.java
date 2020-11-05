@@ -2,11 +2,12 @@ package laucher;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class GUI implements Runnable {
     JPanel mainPanel;
     JTabbedPane tabbedPane;
-    private JTextField textField1;
+    private JTextField aliasField;
     private JButton addConfigurationButton;
     JFrame frame = new JFrame();
 
@@ -29,5 +30,18 @@ public class GUI implements Runnable {
     @Override
     public void run() {
         initMainFrame();
+        setActionListeners();
+    }
+
+    private void setActionListeners() {
+        addConfigurationButton.addActionListener(e -> {
+            try {
+                Data.addConfiguration(aliasField.getText());
+            } catch (IOException e1) {
+                e1.printStackTrace();
+                JOptionPane.showMessageDialog(null,"Failed to create new profile configuration.\n"
+                        + e1.getMessage(),"Data write failure",JOptionPane.ERROR_MESSAGE);
+            }
+        });
     }
 }
