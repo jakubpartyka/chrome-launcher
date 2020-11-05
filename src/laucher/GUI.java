@@ -1,7 +1,5 @@
 package laucher;
 
-import jdk.dynalink.linker.GuardedInvocation;
-
 import javax.swing.*;
 
 public class GUI implements Runnable {
@@ -27,6 +25,5 @@ public class GUI implements Runnable {
     @Override
     public void run() {
         initMainFrame();
-
     }
 }
