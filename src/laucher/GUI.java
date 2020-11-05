@@ -1,4 +1,4 @@
-package com.company;
+package laucher;
 
 import jdk.dynalink.linker.GuardedInvocation;
 
