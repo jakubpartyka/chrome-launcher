@@ -7,7 +7,6 @@ import java.util.Properties;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class Data {
-
     private static FileReader reader;
     private static Properties p;
     private static int config_count;

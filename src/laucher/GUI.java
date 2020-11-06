@@ -9,12 +9,16 @@ public class GUI implements Runnable {
     JTabbedPane tabbedPane;
     private JTextField aliasField;
     private JButton addConfigurationButton;
-    JFrame frame = new JFrame();
+    private JButton startBrowserButton;
+    private JCheckBox exitLauncherOnceBrowserCheckBox;
+    private JPanel displayPanel;
+    JFrame frame;
 
     private void initMainFrame() {
+        frame = new JFrame();
         // set frame properties
-        frame.setSize(800,600);
-        frame.setMinimumSize(new Dimension(300,300));
+        frame.setSize(800, 600);
+        frame.setMinimumSize(new Dimension(300, 300));
         frame.setResizable(true);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -31,7 +35,15 @@ public class GUI implements Runnable {
     public void run() {
         initMainFrame();
         setActionListeners();
+        addConfigurationComponents();
     }
+
+    private void addConfigurationComponents() {
+        for (Configuration configuration : Configuration.configurationList) {
+            //todo implement
+        }
+    }
+
 
     private void setActionListeners() {
         addConfigurationButton.addActionListener(e -> {
@@ -39,9 +51,10 @@ public class GUI implements Runnable {
                 Data.addConfiguration(aliasField.getText());
             } catch (IOException e1) {
                 e1.printStackTrace();
-                JOptionPane.showMessageDialog(null,"Failed to create new profile configuration.\n"
-                        + e1.getMessage(),"Data write failure",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Failed to create new profile configuration.\n"
+                        + e1.getMessage(), "Data write failure", JOptionPane.ERROR_MESSAGE);
             }
         });
     }
+
 }

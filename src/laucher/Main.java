@@ -14,5 +14,4 @@ public class Main {
         SwingUtilities.invokeLater(new GUI());
         System.out.println(Configuration.configurationList);
     }
-
 }
