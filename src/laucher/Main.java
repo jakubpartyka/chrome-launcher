@@ -11,7 +11,7 @@ public class Main {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null,"Failed to start program, please check console logs","Error",JOptionPane.ERROR_MESSAGE);
         }
-//        SwingUtilities.invokeLater(new GUI());
+        SwingUtilities.invokeLater(new GUI());
         System.out.println(Configuration.configurationList);
     }
 

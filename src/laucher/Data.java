@@ -23,7 +23,9 @@ public class Data {
     }
 
     public static void addConfiguration(String alias) throws IOException {
-        p.setProperty("alias",alias);
+        config_count++;
+        p.setProperty("config_count", String.valueOf(config_count));
+        p.setProperty("alias_"+config_count,alias);
         p.store(new FileWriter(".cl.cfg"),"Configuration File");
     }
 
