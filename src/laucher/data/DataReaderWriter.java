@@ -1,4 +1,4 @@
-package laucher;
+package laucher.data;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 @SuppressWarnings("FieldCanBeLocal")
-public class Data {
+public class DataReaderWriter {
     private static FileReader reader;
     private static Properties p;
     private static int config_count;

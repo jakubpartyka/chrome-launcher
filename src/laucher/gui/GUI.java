@@ -1,4 +1,7 @@
-package laucher;
+package laucher.gui;
+
+import laucher.data.Configuration;
+import laucher.data.DataReaderWriter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -48,7 +51,7 @@ public class GUI implements Runnable {
     private void setActionListeners() {
         addConfigurationButton.addActionListener(e -> {
             try {
-                Data.addConfiguration(aliasField.getText());
+                DataReaderWriter.addConfiguration(aliasField.getText());
             } catch (IOException e1) {
                 e1.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Failed to create new profile configuration.\n"

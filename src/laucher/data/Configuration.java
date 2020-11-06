@@ -1,10 +1,10 @@
-package laucher;
+package laucher.data;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Configuration {
-    static List<Configuration> configurationList = new ArrayList<>();
+    public static List<Configuration> configurationList = new ArrayList<>();
 
     String alias;
 
