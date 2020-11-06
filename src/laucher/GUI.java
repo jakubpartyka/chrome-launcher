@@ -11,7 +11,7 @@ public class GUI implements Runnable {
     private JButton addConfigurationButton;
     private JButton startBrowserButton;
     private JCheckBox exitLauncherOnceBrowserCheckBox;
-    private JPanel displayPanel;
+    private JTable dataTable;
     JFrame frame;
 
     private void initMainFrame() {
