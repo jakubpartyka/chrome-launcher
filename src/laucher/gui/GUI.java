@@ -1,6 +1,7 @@
 package laucher.gui;
 
 import laucher.data.Configuration;
+import laucher.data.ConfigurationsTableModel;
 import laucher.data.DataReaderWriter;
 
 import javax.swing.*;
@@ -30,6 +31,9 @@ public class GUI implements Runnable {
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setTitle("Chrome Launcher");
+
+        // init table model
+        dataTable.setModel(new ConfigurationsTableModel());
 
         // adding components
         frame.add(mainPanel);

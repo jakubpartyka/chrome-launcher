@@ -35,10 +35,10 @@ public class DataReaderWriter {
     private static void readConfigurations() {
         for (int i = 1; i <= config_count; i++) {
             String alias = p.getProperty("alias_" + i);
-            String proxyAddress = p.getProperty("proxy_address_" + 1,null);
-            String proxyPort = p.getProperty("proxy_port_" + 1,null);
-            String proxyUser = p.getProperty("proxy_user_" + 1,null);
-            String proxyPass = p.getProperty("proxy_pass_" + 1,null);
+            String proxyAddress = p.getProperty("proxy_address_" + i,null);
+            String proxyPort = p.getProperty("proxy_port_" + i,null);
+            String proxyUser = p.getProperty("proxy_user_" + i,null);
+            String proxyPass = p.getProperty("proxy_pass_" + i,null);
             Configuration configuration = new Configuration(alias,proxyAddress,proxyPort,proxyUser,proxyPass);
             Configuration.configurationList.add(configuration);
         }
