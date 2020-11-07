@@ -10,7 +10,7 @@ public class ConfigurationsTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 5;
+        return 6;
     }
 
     @Override
@@ -22,6 +22,7 @@ public class ConfigurationsTableModel extends AbstractTableModel {
             case 2 -> conf.proxyPort;
             case 3 -> conf.proxyUser;
             case 4 -> conf.proxyPass;
+            case 5 -> conf.proxyCountry;
             default -> "N/A";
         };
     }
@@ -34,6 +35,7 @@ public class ConfigurationsTableModel extends AbstractTableModel {
             case 2 -> "Proxy port";
             case 3 -> "Proxy user";
             case 4 -> "Proxy password";
+            case 5 -> "Proxy country";
             default -> "Invalid column";
         };
     }

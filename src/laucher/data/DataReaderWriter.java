@@ -21,7 +21,7 @@ public class DataReaderWriter {
         readConfigurations();
     }
 
-    public static void addConfiguration(String alias, String proxyAddress, String proxyPort, String proxyUser, String proxyPass) throws IOException {
+    public static void addConfiguration(String alias, String proxyAddress, String proxyPort, String proxyUser, String proxyPass, String proxyCountry) throws IOException {
         config_count++;
         p.setProperty("config_count", String.valueOf(config_count));
         p.setProperty("alias_"+config_count,alias);
@@ -29,6 +29,7 @@ public class DataReaderWriter {
         p.setProperty("proxy_port_"+config_count,proxyPort);
         p.setProperty("proxy_user_"+config_count,proxyUser);
         p.setProperty("proxy_pass_"+config_count,proxyPass);
+        p.setProperty("proxy_country_"+config_count,proxyCountry);
         p.store(new FileWriter(".cl.cfg"),"Configuration File");
     }
 
@@ -39,7 +40,8 @@ public class DataReaderWriter {
             String proxyPort = p.getProperty("proxy_port_" + i,null);
             String proxyUser = p.getProperty("proxy_user_" + i,null);
             String proxyPass = p.getProperty("proxy_pass_" + i,null);
-            Configuration configuration = new Configuration(alias,proxyAddress,proxyPort,proxyUser,proxyPass);
+            String proxyCountry = p.getProperty("proxy_country_" + i,null);
+            Configuration configuration = new Configuration(alias,proxyAddress,proxyPort,proxyUser,proxyPass, proxyCountry);
             Configuration.configurationList.add(configuration);
         }
     }

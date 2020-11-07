@@ -20,6 +20,7 @@ public class GUI implements Runnable {
     private JTextField proxyPortField;
     private JTextField proxyUserField;
     private JTextField proxyPasswordField;
+    private JTextField proxyCountryField;
     JFrame frame;
 
     private void initMainFrame() {
@@ -64,7 +65,8 @@ public class GUI implements Runnable {
                         proxyAddressField.getText(),
                         proxyPortField.getText(),
                         proxyUserField.getText(),
-                        proxyPasswordField.getText());
+                        proxyPasswordField.getText(),
+                        proxyCountryField.getText());
             } catch (IOException e1) {
                 e1.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Failed to create new profile configuration.\n"
