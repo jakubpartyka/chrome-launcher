@@ -2,7 +2,7 @@ package laucher.data;
 
 import javax.swing.table.AbstractTableModel;
 
-public class ConfigurationsTable extends AbstractTableModel {
+public class ConfigurationsTableModel extends AbstractTableModel {
     @Override
     public int getRowCount() {
         return Configuration.configurationList.size();
