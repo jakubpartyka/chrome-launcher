@@ -47,15 +47,7 @@ public class GUI implements Runnable {
     public void run() {
         initMainFrame();
         setActionListeners();
-        addConfigurationComponents();
     }
-
-    private void addConfigurationComponents() {
-        for (Configuration configuration : Configuration.configurationList) {
-            //todo implement
-        }
-    }
-
 
     private void setActionListeners() {
         addConfigurationButton.addActionListener(e -> {
