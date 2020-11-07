@@ -15,6 +15,10 @@ public class GUI implements Runnable {
     private JButton startBrowserButton;
     private JCheckBox exitLauncherOnceBrowserCheckBox;
     private JTable dataTable;
+    private JTextField proxyAddressField;
+    private JTextField proxyPortField;
+    private JTextField proxyUserField;
+    private JTextField proxyPasswordField;
     JFrame frame;
 
     private void initMainFrame() {
