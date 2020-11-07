@@ -68,7 +68,12 @@ public class GUI implements Runnable {
         });
 
         deleteSelectedButton.addActionListener(e -> {
-            ((ConfigurationsTableModel)dataTable.getModel()).delete(dataTable.getSelectedRows());
+            int [] selectedRows = dataTable.getSelectedRows();
+            if(selectedRows.length == 0)
+                return;
+            int choice = JOptionPane.showConfirmDialog(null,"Delete " + selectedRows.length + " entries?","Confirm action",JOptionPane.OK_CANCEL_OPTION);
+            if(choice == 0)
+                ((ConfigurationsTableModel)dataTable.getModel()).delete(selectedRows);
         });
     }
 
