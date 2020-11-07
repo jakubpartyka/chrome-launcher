@@ -1,6 +1,8 @@
 package laucher.data;
 
 import javax.swing.table.AbstractTableModel;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConfigurationsTableModel extends AbstractTableModel {
     @Override
@@ -38,5 +40,13 @@ public class ConfigurationsTableModel extends AbstractTableModel {
             case 5 -> "Proxy country";
             default -> "Invalid column";
         };
+    }
+
+    public void delete(int[] selectedRows) {
+        List<Configuration> toRemove = new ArrayList<>();
+        for (int row : selectedRows)
+            toRemove.add(Configuration.configurationList.get(row));
+        Configuration.configurationList.removeAll(toRemove);
+        this.fireTableDataChanged();
     }
 }

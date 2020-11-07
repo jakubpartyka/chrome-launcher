@@ -66,6 +66,10 @@ public class GUI implements Runnable {
                         + e1.getMessage(), "Data write failure", JOptionPane.ERROR_MESSAGE);
             }
         });
+
+        deleteSelectedButton.addActionListener(e -> {
+            ((ConfigurationsTableModel)dataTable.getModel()).delete(dataTable.getSelectedRows());
+        });
     }
 
 }
