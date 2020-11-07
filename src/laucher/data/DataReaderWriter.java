@@ -21,10 +21,14 @@ public class DataReaderWriter {
         readConfigurations();
     }
 
-    public static void addConfiguration(String alias) throws IOException {
+    public static void addConfiguration(String alias, String proxyAddress, String proxyPort, String proxyUser, String proxyPass) throws IOException {
         config_count++;
         p.setProperty("config_count", String.valueOf(config_count));
         p.setProperty("alias_"+config_count,alias);
+        p.setProperty("proxy_address_"+config_count,proxyAddress);
+        p.setProperty("proxy_port_"+config_count,proxyPort);
+        p.setProperty("proxy_user_"+config_count,proxyUser);
+        p.setProperty("proxy_pass_"+config_count,proxyPass);
         p.store(new FileWriter(".cl.cfg"),"Configuration File");
     }
 

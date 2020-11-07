@@ -55,7 +55,12 @@ public class GUI implements Runnable {
     private void setActionListeners() {
         addConfigurationButton.addActionListener(e -> {
             try {
-                DataReaderWriter.addConfiguration(aliasField.getText());
+                DataReaderWriter.addConfiguration(
+                        aliasField.getText(),
+                        proxyAddressField.getText(),
+                        proxyPortField.getText(),
+                        proxyUserField.getText(),
+                        proxyPasswordField.getText());
             } catch (IOException e1) {
                 e1.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Failed to create new profile configuration.\n"
