@@ -1,10 +1,12 @@
 package laucher.data;
 
+import laucher.gui.ConfigData;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +37,15 @@ public class Configuration {
         options.setCapability("proxy", proxy);
         WebDriver driver = new ChromeDriver(options);
         driver.get("https://api.myip.com");
+        SwingUtilities.invokeLater(new ConfigData(conf));
+    }
+
+    public String getProxyUser() {
+        return proxyUser;
+    }
+
+    public String getProxyPass() {
+        return proxyPass;
     }
 
     @Override
