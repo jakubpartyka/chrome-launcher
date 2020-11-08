@@ -87,6 +87,15 @@ public class GUI implements Runnable {
             if(choice == 0)
                 ((ConfigurationsTableModel)dataTable.getModel()).delete(selectedRows);
         });
+
+        startBrowserButton.addActionListener(e -> {
+            for (int selectedRow : dataTable.getSelectedRows()) {
+                Configuration configuration = Configuration.configurationList.get(selectedRow);
+                Configuration.start(configuration);
+            }
+
+        });
+
     }
 
 }

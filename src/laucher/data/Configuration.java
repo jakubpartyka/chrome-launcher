@@ -1,5 +1,10 @@
 package laucher.data;
 
+import org.openqa.selenium.Proxy;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,11 +28,13 @@ public class Configuration {
         this.proxyCountry = proxyCountry;
     }
 
-    public static Configuration getConfiguration(int id){
-        for (Configuration configuration : configurationList)
-            if (configuration.id == id)
-                return configuration;
-        return null;
+    public static void start(Configuration conf) {
+        Proxy proxy = new Proxy();
+        proxy.setHttpProxy("<" + conf.proxyAddress + ":" + conf.proxyPort + ">");
+        ChromeOptions options = new ChromeOptions();
+        options.setCapability("proxy", proxy);
+        WebDriver driver = new ChromeDriver(options);
+        driver.get("https://api.myip.com");
     }
 
     @Override
