@@ -37,7 +37,10 @@ public class Configuration {
         options.setCapability("proxy", proxy);
         WebDriver driver = new ChromeDriver(options);
         driver.get("https://api.myip.com");
-        SwingUtilities.invokeLater(new ConfigData(conf));
+
+        // show proxy credentials field if present
+        if(conf.proxyPass != null && !conf.proxyPass.matches("^\\s*$") && conf.proxyUser != null && !conf.proxyUser.matches("^\\s*$"))
+            SwingUtilities.invokeLater(new ConfigData(conf));
     }
 
     public String getProxyUser() {

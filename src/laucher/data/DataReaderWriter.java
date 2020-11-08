@@ -27,7 +27,7 @@ public class DataReaderWriter {
         for (int i = 1; i < next_id; i++) {
             String alias = p.getProperty("alias_" + i);
 
-            if(alias == null || alias.matches("(\\s+)"))
+            if(alias == null || alias.matches("^\\s*$"))
                 continue;
 
             String proxyAddress = p.getProperty("proxy_address_" + i,null);
