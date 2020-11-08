@@ -6,6 +6,7 @@ import java.util.List;
 public class Configuration {
     public static List<Configuration> configurationList = new ArrayList<>();
 
+    int id;
     String alias;
     String proxyAddress;
     String proxyPort;

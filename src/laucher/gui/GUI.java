@@ -53,13 +53,23 @@ public class GUI implements Runnable {
     private void setActionListeners() {
         addConfigurationButton.addActionListener(e -> {
             try {
-                DataReaderWriter.addConfiguration(
+                // create new configuration object
+                Configuration configuration = new Configuration(
                         aliasField.getText(),
                         proxyAddressField.getText(),
                         proxyPortField.getText(),
                         proxyUserField.getText(),
                         proxyPasswordField.getText(),
-                        proxyCountryField.getText());
+                        proxyCountryField.getText()
+                );
+
+                // write configuration to file
+                DataReaderWriter.addConfiguration(configuration);
+
+                // add configuration to gui
+                Configuration.configurationList.add(configuration);
+                ((ConfigurationsTableModel)dataTable.getModel()).fireTableDataChanged();
+
             } catch (IOException e1) {
                 e1.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Failed to create new profile configuration.\n"
