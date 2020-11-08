@@ -46,6 +46,7 @@ public class ConfigurationsTableModel extends AbstractTableModel {
         List<Configuration> toRemove = new ArrayList<>();
         for (int row : selectedRows)
             toRemove.add(Configuration.configurationList.get(row));
+        toRemove.forEach(DataReaderWriter::removeConfiguration);
         Configuration.configurationList.removeAll(toRemove);
         this.fireTableDataChanged();
     }

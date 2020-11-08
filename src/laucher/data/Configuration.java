@@ -23,6 +23,13 @@ public class Configuration {
         this.proxyCountry = proxyCountry;
     }
 
+    public static Configuration getConfiguration(int id){
+        for (Configuration configuration : configurationList)
+            if (configuration.id == id)
+                return configuration;
+        return null;
+    }
+
     @Override
     public String toString() {
         return alias;
