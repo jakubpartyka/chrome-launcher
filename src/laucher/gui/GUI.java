@@ -90,13 +90,18 @@ public class GUI implements Runnable {
 
         startBrowserButton.addActionListener(e -> {
             // allow only one browser instance to be started at time
-            if(dataTable.getSelectedRows().length != 1){
-                JOptionPane.showMessageDialog(null,"Please select exactly one configuration to launch","Incorrect number of configurations selected",JOptionPane.INFORMATION_MESSAGE);
+            if (dataTable.getSelectedRows().length != 1) {
+                JOptionPane.showMessageDialog(null, "Please select exactly one configuration to launch", "Incorrect number of configurations selected", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
 
             Configuration configuration = Configuration.configurationList.get(dataTable.getSelectedRow());
             Configuration.start(configuration);
+
+            if (exitLauncherOnceBrowserCheckBox.isSelected()){
+                frame.setVisible(false);
+                frame.dispose();
+            }
         });
 
     }
