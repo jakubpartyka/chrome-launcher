@@ -70,8 +70,8 @@ public class GUI implements Runnable {
                 Configuration.configurationList.add(configuration);
                 ((ConfigurationsTableModel)dataTable.getModel()).fireTableDataChanged();
 
+                // show info message
                 JOptionPane.showMessageDialog(null,"Configuration added successfully","Configuration added",JOptionPane.INFORMATION_MESSAGE);
-
             } catch (IOException e1) {
                 e1.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Failed to create new profile configuration.\n"

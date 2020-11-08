@@ -3,7 +3,6 @@ package laucher.data;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
 import java.util.Properties;
 
 @SuppressWarnings("FieldCanBeLocal")
@@ -20,18 +19,6 @@ public class DataReaderWriter {
         config_count = Integer.parseInt(p.getProperty("config_count"));
         
         readConfigurations();
-    }
-
-    public static void addConfiguration(String alias, String proxyAddress, String proxyPort, String proxyUser, String proxyPass, String proxyCountry) throws IOException {
-        config_count++;
-        p.setProperty("config_count", String.valueOf(config_count));
-        p.setProperty("alias_"+config_count,alias);
-        p.setProperty("proxy_address_"+config_count,proxyAddress);
-        p.setProperty("proxy_port_"+config_count,proxyPort);
-        p.setProperty("proxy_user_"+config_count,proxyUser);
-        p.setProperty("proxy_pass_"+config_count,proxyPass);
-        p.setProperty("proxy_country_"+config_count,proxyCountry);
-        p.store(new FileWriter(".cl.cfg"),"Configuration File");
     }
 
     private static void readConfigurations() {
