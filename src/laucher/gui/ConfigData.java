@@ -21,11 +21,20 @@ public class ConfigData implements Runnable{
         JFrame frame = new JFrame();
         frame.add(mainPanel);
 
+        // show login data
         usernameField.setText(configuration.getProxyUser());
         passField.setText(configuration.getProxyPass());
 
+        // exit on window close
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        frame.setSize(300,300);
+        // add action listener
+        doneButton.addActionListener(e -> {
+            frame.setVisible(false);
+            frame.dispose();
+        });
+
+        frame.setSize(300,200);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setAlwaysOnTop(true);
