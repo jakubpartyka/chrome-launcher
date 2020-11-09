@@ -35,7 +35,8 @@ public class DataReaderWriter {
             String proxyUser = p.getProperty("proxy_user_" + i,null);
             String proxyPass = p.getProperty("proxy_pass_" + i,null);
             String proxyCountry = p.getProperty("proxy_country_" + i,null);
-            Configuration configuration = new Configuration(alias,proxyAddress,proxyPort,proxyUser,proxyPass, proxyCountry);
+            String userAgent = p.getProperty("user_agent_" + i,null);
+            Configuration configuration = new Configuration(alias,proxyAddress,proxyPort,proxyUser,proxyPass, proxyCountry, userAgent);
             configuration.id = i;
             Configuration.configurationList.add(configuration);
         }
@@ -55,6 +56,7 @@ public class DataReaderWriter {
         p.setProperty("proxy_user_" + conf.id,conf.proxyUser);
         p.setProperty("proxy_pass_" + conf.id,conf.proxyPass);
         p.setProperty("proxy_country_" + conf.id,conf.proxyCountry);
+        p.setProperty("user_agent_" + conf.id,conf.userAgent);
 
         p.store(new FileWriter(".cl.cfg"),"Configuration File");
     }
@@ -71,6 +73,7 @@ public class DataReaderWriter {
         p.remove("proxy_user_" + id);
         p.remove("proxy_pass_" + id);
         p.remove("proxy_country_" + id);
+        p.remove("user_agent_" + id);
 
         try {
             p.store(new FileWriter(".cl.cfg"),"Configuration File");

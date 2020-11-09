@@ -20,19 +20,22 @@ public class Configuration {
     String proxyUser;
     String proxyPass;
     String proxyCountry;
+    String userAgent;
 
-    public Configuration(String alias, String proxyAddress, String proxyPort, String proxyUser, String proxyPass, String proxyCountry) {
+    public Configuration(String alias, String proxyAddress, String proxyPort, String proxyUser, String proxyPass, String proxyCountry, String userAgent) {
         this.alias = alias;
         this.proxyAddress = proxyAddress;
         this.proxyPort = proxyPort;
         this.proxyUser = proxyUser;
         this.proxyPass = proxyPass;
         this.proxyCountry = proxyCountry;
+        this.userAgent = userAgent;
     }
 
     public static void start(Configuration conf) {
         Proxy proxy = new Proxy();
-        proxy.setHttpProxy("<" + conf.proxyAddress + ":" + conf.proxyPort + ">");
+        proxy.setHttpProxy(conf.proxyAddress + ":" + conf.proxyPort);
+        proxy.setSslProxy(conf.proxyAddress + ":" + conf.proxyPort);
         ChromeOptions options = new ChromeOptions();
         options.setCapability("proxy", proxy);
         WebDriver driver = new ChromeDriver(options);

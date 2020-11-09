@@ -22,6 +22,7 @@ public class GUI implements Runnable {
     private JTextField proxyPasswordField;
     private JTextField proxyCountryField;
     private JButton deleteSelectedButton;
+    private JTextField userAgentField;
     JFrame frame;
 
     private void initMainFrame() {
@@ -60,7 +61,8 @@ public class GUI implements Runnable {
                         proxyPortField.getText(),
                         proxyUserField.getText(),
                         proxyPasswordField.getText(),
-                        proxyCountryField.getText()
+                        proxyCountryField.getText(),
+                        userAgentField.getText()
                 );
 
                 // write configuration to file
