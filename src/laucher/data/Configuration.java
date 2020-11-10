@@ -5,7 +5,6 @@ import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,10 +33,19 @@ public class Configuration {
 
     public static void start(Configuration conf) {
         Proxy proxy = new Proxy();
+
+        // set proxy
         proxy.setHttpProxy(conf.proxyAddress + ":" + conf.proxyPort);
         proxy.setSslProxy(conf.proxyAddress + ":" + conf.proxyPort);
         ChromeOptions options = new ChromeOptions();
         options.setCapability("proxy", proxy);
+
+        // set user agent
+        if(conf.userAgent != null && !conf.userAgent.equals("")){
+            options.addArguments("--user-agent=\"" + conf.userAgent + "\"");
+        }
+
+        // start driver and navigate to myip.com API address
         WebDriver driver = new ChromeDriver(options);
         driver.get("https://api.myip.com");
 
