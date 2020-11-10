@@ -79,7 +79,12 @@
                 <children>
                   <component id="bf251" class="javax.swing.JTable" binding="dataTable">
                     <constraints/>
-                    <properties/>
+                    <properties>
+                      <autoResizeMode value="1"/>
+                      <background color="-13813695"/>
+                      <font name="Monospaced" size="16" style="0"/>
+                      <foreground color="-4600904"/>
+                    </properties>
                   </component>
                 </children>
               </scrollpane>
