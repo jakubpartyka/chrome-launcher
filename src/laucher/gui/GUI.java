@@ -37,10 +37,12 @@ public class GUI implements Runnable {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setTitle("Chrome Launcher");
 
-        // init table model
+        // init data table
         dataTable.setModel(new ConfigurationsTableModel());
         dataTable.setForeground(Color.WHITE);
         resizeColumnWidth(dataTable);
+        dataTable.getTableHeader().setFont(new Font("Monospaced", Font.BOLD, 12));
+        dataTable.setRowHeight(dataTable.getRowHeight()+10);
 
         // adding components
         frame.add(mainPanel);
