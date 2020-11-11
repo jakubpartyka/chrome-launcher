@@ -2,6 +2,8 @@ package laucher.gui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 @SuppressWarnings("BusyWait")
 public class Login implements Runnable {
@@ -32,14 +34,27 @@ public class Login implements Runnable {
 
             // verify password
             if(userPassword.toString().equals(password)) {
-                // password successful ; user authorized
+                // password correct ; user authorized
                 this.authorized = true;
                 frame.dispose();
             }
             else {
+                // password incorrect
                 infoLabel.setText("Incorrect password!");
                 infoLabel.setForeground(Color.RED);
                 passwordField.setText("");
+            }
+        });
+
+        passwordField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (e.getExtendedKeyCode() == 10){
+                    loginButton.doClick();
+                    e.consume();
+                    return;
+                }
+                super.keyReleased(e);
             }
         });
 
@@ -54,7 +69,8 @@ public class Login implements Runnable {
 
     private void initFrame() {
         frame = new JFrame();
-        frame.setSize(300,300);
+        frame.setSize(400,300);
+        frame.setTitle("Chrome Launcher Login");
         frame.setResizable(false);
         frame.add(loginPanel);
         frame.setLocationRelativeTo(null);
