@@ -1,5 +1,6 @@
 package laucher.data;
 
+import javax.swing.*;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -24,8 +25,8 @@ public class DataReaderWriter {
 
         if(password==null){
             System.out.println("no password in config file");
+            JOptionPane.showMessageDialog(null,"No password found in configuration file!","Configuration error",JOptionPane.ERROR_MESSAGE);
             System.exit(1);
-            //todo implement showing error message to user
         }
 
         readConfigurations();
