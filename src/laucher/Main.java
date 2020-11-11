@@ -15,6 +15,7 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null,"Failed to start program, please check console logs","Error",JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
         }
 
         // SHOW LOGIN
