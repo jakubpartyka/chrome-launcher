@@ -16,19 +16,22 @@ public class DataReaderWriter {
 
     public static void init() throws IOException {
         reader = new FileReader(".cl.cfg");
-        p=new Properties();
+        p = new Properties();
         p.load(reader);
-        
+
+        // load basic properties
         config_count = Integer.parseInt(p.getProperty("config_count"));
         next_id = Integer.parseInt(p.getProperty("next_id"));
         password = p.getProperty("password");
 
+        // check if password configured
         if(password==null){
             System.out.println("no password in config file");
             JOptionPane.showMessageDialog(null,"No password found in configuration file!","Configuration error",JOptionPane.ERROR_MESSAGE);
             System.exit(1);
         }
 
+        // load chrome browser configurations
         readConfigurations();
     }
 

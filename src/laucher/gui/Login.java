@@ -58,13 +58,12 @@ public class Login implements Runnable {
             }
         });
 
-        while (frame.isVisible()){
+        while (frame.isVisible())
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }
     }
 
     private void initFrame() {

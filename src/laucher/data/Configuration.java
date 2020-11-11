@@ -41,9 +41,8 @@ public class Configuration {
         options.setCapability("proxy", proxy);
 
         // set user agent
-        if(conf.userAgent != null && !conf.userAgent.equals("")){
+        if(conf.userAgent != null && !conf.userAgent.equals(""))
             options.addArguments("--user-agent=\"" + conf.userAgent + "\"");
-        }
 
         // start driver and navigate to myip.com API address
         WebDriver driver = new ChromeDriver(options);
