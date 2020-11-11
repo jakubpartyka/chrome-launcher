@@ -3,7 +3,6 @@ package laucher.gui;
 import laucher.data.Configuration;
 import laucher.data.ConfigurationsTableModel;
 import laucher.data.DataReaderWriter;
-
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;

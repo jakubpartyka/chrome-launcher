@@ -11,6 +11,7 @@ public class DataReaderWriter {
     private static Properties p;
     private static int config_count;
     private static int next_id;
+    private static String password;
 
     public static void init() throws IOException {
         reader = new FileReader(".cl.cfg");
@@ -19,7 +20,14 @@ public class DataReaderWriter {
         
         config_count = Integer.parseInt(p.getProperty("config_count"));
         next_id = Integer.parseInt(p.getProperty("next_id"));
-        
+        password = p.getProperty("password");
+
+        if(password==null){
+            System.out.println("no password in config file");
+            System.exit(1);
+            //todo implement showing error message to user
+        }
+
         readConfigurations();
     }
 
@@ -80,5 +88,9 @@ public class DataReaderWriter {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static String getPassword() {
+        return password;
     }
 }
