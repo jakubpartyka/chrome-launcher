@@ -1,10 +1,11 @@
 package laucher.gui;
 
 import javax.swing.*;
+import java.awt.*;
 
 @SuppressWarnings("BusyWait")
 public class Login implements Runnable {
-    private String password;
+    private final String password;
 
     // GUI components
     private JFrame frame;
@@ -12,6 +13,7 @@ public class Login implements Runnable {
     private JButton loginButton;
     private JPanel loginPanel;
     private JPasswordField passwordField;
+    private JLabel infoLabel;
 
     public Login(String password){
         this.password = password;
@@ -25,7 +27,7 @@ public class Login implements Runnable {
             // get password from password field
             StringBuilder userPassword = new StringBuilder();
             for (char c : passwordField.getPassword()) {
-                userPassword.append(String.valueOf(c));
+                userPassword.append(c);
             }
 
             // verify password
@@ -35,7 +37,8 @@ public class Login implements Runnable {
                 frame.dispose();
             }
             else {
-                //todo incorrect password
+                infoLabel.setText("Incorrect password!");
+                infoLabel.setForeground(Color.RED);
                 passwordField.setText("");
             }
         });
