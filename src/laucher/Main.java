@@ -4,7 +4,6 @@ import laucher.data.Configuration;
 import laucher.data.DataReaderWriter;
 import laucher.gui.GUI;
 import laucher.gui.Login;
-
 import javax.swing.*;
 import java.io.IOException;
 

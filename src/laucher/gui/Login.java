@@ -11,6 +11,7 @@ public class Login implements Runnable {
     private boolean authorized = false;
     private JButton loginButton;
     private JPanel loginPanel;
+    private JPasswordField passwordField;
 
     public Login(String password){
         this.password = password;
@@ -21,8 +22,22 @@ public class Login implements Runnable {
         initFrame();
 
         loginButton.addActionListener(e -> {
-            this.authorized = true;
-            frame.dispose();
+            // get password from password field
+            StringBuilder userPassword = new StringBuilder();
+            for (char c : passwordField.getPassword()) {
+                userPassword.append(String.valueOf(c));
+            }
+
+            // verify password
+            if(userPassword.toString().equals(password)) {
+                // password successful ; user authorized
+                this.authorized = true;
+                frame.dispose();
+            }
+            else {
+                //todo incorrect password
+                passwordField.setText("");
+            }
         });
 
         while (frame.isVisible()){
