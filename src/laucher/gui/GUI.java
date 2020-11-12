@@ -24,7 +24,7 @@ public class GUI implements Runnable {
     private JTextField proxyCountryField;
     private JButton deleteSelectedButton;
     private JTextField userAgentField;
-    JFrame frame;
+    private JFrame frame;
 
     private void initMainFrame() {
         frame = new JFrame();

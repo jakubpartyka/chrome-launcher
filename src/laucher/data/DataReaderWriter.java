@@ -55,13 +55,18 @@ public class DataReaderWriter {
     }
 
     public static void addConfiguration(Configuration conf) throws IOException {
+        // set new configuration ID
+        conf.id = next_id;
+
+        // increment counters
         config_count++;
         next_id++;
-        conf.id = Integer.parseInt((String) p.get("next_id"));
 
+        // increment counters in property file
         p.setProperty("config_count", String.valueOf(config_count));
         p.setProperty("next_id", String.valueOf(next_id));
 
+        // set config values
         p.setProperty("alias_" + conf.id,conf.alias);
         p.setProperty("proxy_address_" + conf.id,conf.proxyAddress);
         p.setProperty("proxy_port_" + conf.id,conf.proxyPort);
@@ -70,6 +75,7 @@ public class DataReaderWriter {
         p.setProperty("proxy_country_" + conf.id,conf.proxyCountry);
         p.setProperty("user_agent_" + conf.id,conf.userAgent);
 
+        // write config to file
         p.store(new FileWriter(".cl.cfg"),"Configuration File");
     }
 
