@@ -48,28 +48,10 @@ public class Configuration {
 
 
     public static void start(Configuration conf) {
-        // check if password needed to launch configuration
-        if (!conf.accessPassword.isBlank()){
-            JPanel panel = new JPanel();
-            JLabel label = new JLabel("Provide password:");
-            JPasswordField pass = new JPasswordField(10);
-            panel.add(label);
-            panel.add(pass);
-            panel.setPreferredSize(new Dimension(200,100));
-            String[] options = new String[]{"OK", "Cancel"};
-            int option = JOptionPane.showOptionDialog(null, panel, "Password required",
-                    JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
-                    null, options, options[1]);
-            if(option == 0) // pressing OK button
-            {
-                char[] password = pass.getPassword();
-                String provided = new String(password);
-                if(!provided.equals(conf.accessPassword))
-                    return;
-            }
-            else    // password verification cancelled
+        if(!conf.accessPassword.isBlank()){
+            boolean userVerified = showPasswordDialog(conf);
+            if(!userVerified)
                 return;
-
         }
 
 
@@ -92,6 +74,32 @@ public class Configuration {
         // show proxy credentials field if present
         if(conf.proxyPass != null && !conf.proxyPass.matches("^\\s*$") && conf.proxyUser != null && !conf.proxyUser.matches("^\\s*$"))
             SwingUtilities.invokeLater(new ConfigData(conf));
+    }
+
+    /**
+     * Shows password dialog.
+     * @param conf configuration object to which access is being verified
+     * @return true if provided password matches conf accessPassword
+     */
+    private static boolean showPasswordDialog(Configuration conf) {
+        JPanel panel = new JPanel();
+        JLabel label = new JLabel("Provide password:");
+        JPasswordField pass = new JPasswordField(10);
+        panel.add(label);
+        panel.add(pass);
+        panel.setPreferredSize(new Dimension(200,100));
+        String[] options = new String[]{"OK", "Cancel"};
+        int option = JOptionPane.showOptionDialog(null, panel, "Password required",
+                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
+                null, options, options[1]);
+        if(option == 0) // pressing OK button
+        {
+            char[] password = pass.getPassword();
+            String provided = new String(password);
+            return provided.equals(conf.accessPassword);
+        }
+        else    // password verification cancelled
+            return false;
     }
 
 
