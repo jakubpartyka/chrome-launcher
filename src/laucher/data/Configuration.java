@@ -21,6 +21,10 @@ public class Configuration {
     String proxyCountry;
     String userAgent;
 
+    boolean proxyRequired;
+    String  customProfileDirectory;
+    String  launchPassword;
+
     public Configuration(String alias, String proxyAddress, String proxyPort, String proxyUser, String proxyPass, String proxyCountry, String userAgent) {
         this.alias = alias;
         this.proxyAddress = proxyAddress;

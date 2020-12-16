@@ -1,7 +1,6 @@
 package laucher.gui;
 
 import laucher.data.Configuration;
-
 import javax.swing.*;
 
 public class ConfigData implements Runnable{
