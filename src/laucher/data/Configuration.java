@@ -5,6 +5,7 @@ import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,16 +20,19 @@ public class Configuration {
     String proxyUser;
     String proxyPass;
     String proxyCountry;
-    String userAgent, userAgentAlias = null;
+    String userAgent, userAgentAlias;
 
-    boolean proxyRequired;
+    boolean vpnRequired;
     String  customProfileDirectory;
     /**
      * Additional access-control layer. Password to be provided to launch or access config data.
      */
     String  accessPassword;
 
-    public Configuration(String alias, String proxyAddress, String proxyPort, String proxyUser, String proxyPass, String proxyCountry, String userAgent) {
+    public Configuration(String alias, String proxyAddress, String proxyPort, String proxyUser,
+                         String proxyPass, String proxyCountry, String userAgent,
+                         String userAgentAlias, boolean vpnRequired, String customProfileDirectory,
+                         String accessPassword) {
         this.alias = alias;
         this.proxyAddress = proxyAddress;
         this.proxyPort = proxyPort;
@@ -36,7 +40,12 @@ public class Configuration {
         this.proxyPass = proxyPass;
         this.proxyCountry = proxyCountry;
         this.userAgent = userAgent;
+        this.userAgentAlias = userAgentAlias;
+        this.vpnRequired = vpnRequired;
+        this.customProfileDirectory = customProfileDirectory;
+        this.accessPassword = accessPassword;
     }
+
 
     public static void start(Configuration conf) {
         Proxy proxy = new Proxy();

@@ -23,10 +23,10 @@ public class ConfigurationsTableModel extends AbstractTableModel {
             case 0 -> conf.alias;
             case 1 -> conf.getProxyInfo();
             case 2 -> conf.getProfilePath();
-            case 3 -> conf.proxyRequired;
+            case 3 -> conf.vpnRequired;
             case 4 -> conf.isPasswordProtected();
             case 5 -> conf.getUserAgentInfo();
-            default -> "N/A";
+            default -> "N/D";
         };
     }
 

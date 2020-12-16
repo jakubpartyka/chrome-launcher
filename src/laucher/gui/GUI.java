@@ -25,8 +25,9 @@ public class GUI implements Runnable {
     private JButton deleteSelectedButton;
     private JTextField userAgentField;
     private JCheckBox vpnRequiredCheckBox;
-    private JTextField accesspasswordField;
+    private JTextField accessPasswordField;
     private JTextField customProfilePath;
+    private JTextField userAgentAlias;
     private JFrame frame;
 
     private void initMainFrame() {
@@ -62,27 +63,8 @@ public class GUI implements Runnable {
     private void setActionListeners() {
         addConfigurationButton.addActionListener(e -> {
             try {
-                // create new configuration object
-                Configuration configuration = new Configuration(
-                        aliasField.getText(),
-                        proxyAddressField.getText(),
-                        proxyPortField.getText(),
-                        proxyUserField.getText(),
-                        proxyPasswordField.getText(),
-                        proxyCountryField.getText(),
-                        userAgentField.getText()
-                );
-
-                // write configuration to file
-                DataReaderWriter.addConfiguration(configuration);
-
-                // add configuration to gui
-                Configuration.configurationList.add(configuration);
-                ((ConfigurationsTableModel)dataTable.getModel()).fireTableDataChanged();
-
-                // show info message
-                JOptionPane.showMessageDialog(null,"Configuration added successfully","Configuration added",JOptionPane.INFORMATION_MESSAGE);
-            } catch (IOException e1) {
+                createNewConfiguration();
+                } catch (IOException e1) {
                 e1.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Failed to create new profile configuration.\n"
                         + e1.getMessage(), "Data write failure", JOptionPane.ERROR_MESSAGE);
@@ -130,4 +112,30 @@ public class GUI implements Runnable {
             columnModel.getColumn(column).setPreferredWidth(width);
         }
     }
+
+    private void createNewConfiguration() throws IOException {
+        // create new configuration object
+        Configuration configuration = new Configuration(
+                aliasField.getText(),
+                proxyAddressField.getText(),
+                proxyPortField.getText(),
+                proxyUserField.getText(),
+                proxyPasswordField.getText(),
+                proxyCountryField.getText(),
+                userAgentField.getText(),
+                userAgentAlias.getText(),vpnRequiredCheckBox.isSelected(),customProfilePath.getText(),accessPasswordField.getText()
+        );
+
+        // write configuration to file
+        DataReaderWriter.addConfiguration(configuration);
+
+        // add configuration to gui
+        Configuration.configurationList.add(configuration);
+        ((ConfigurationsTableModel)dataTable.getModel()).fireTableDataChanged();
+
+        // show info message
+        JOptionPane.showMessageDialog(null,"Configuration added successfully","Configuration added",JOptionPane.INFORMATION_MESSAGE);
+
+    }
+
 }
