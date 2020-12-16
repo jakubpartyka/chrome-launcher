@@ -90,4 +90,12 @@ public class Configuration {
             return "yes";
         return "not set";
     }
+
+    public Object getUserAgentInfo() {
+        if(userAgentAlias != null && userAgent != null)
+            return userAgentAlias;
+        if(userAgentAlias == null && userAgent != null)
+            return "set, no alias";
+        return "not set";
+    }
 }

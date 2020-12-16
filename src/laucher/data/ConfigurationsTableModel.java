@@ -25,8 +25,7 @@ public class ConfigurationsTableModel extends AbstractTableModel {
             case 2 -> conf.getProfilePath();
             case 3 -> conf.proxyRequired;
             case 4 -> conf.isPasswordProtected();
-            case 5 -> conf.userAgentAlias;
-            case 6 -> conf.userAgent;
+            case 5 -> conf.getUserAgentInfo();
             default -> "N/A";
         };
     }
