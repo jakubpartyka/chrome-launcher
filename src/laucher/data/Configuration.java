@@ -23,7 +23,10 @@ public class Configuration {
 
     boolean proxyRequired;
     String  customProfileDirectory;
-    String  launchPassword;
+    /**
+     * Additional access-control layer. Password to be provided to launch or access config data.
+     */
+    String  accessPassword;
 
     public Configuration(String alias, String proxyAddress, String proxyPort, String proxyUser, String proxyPass, String proxyCountry, String userAgent) {
         this.alias = alias;

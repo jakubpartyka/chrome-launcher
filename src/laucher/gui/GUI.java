@@ -24,6 +24,9 @@ public class GUI implements Runnable {
     private JTextField proxyCountryField;
     private JButton deleteSelectedButton;
     private JTextField userAgentField;
+    private JCheckBox vpnRequiredCheckBox;
+    private JTextField accesspasswordField;
+    private JTextField customProfilePath;
     private JFrame frame;
 
     private void initMainFrame() {

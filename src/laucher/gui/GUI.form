@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="582" height="476"/>
+      <xy x="20" y="20" width="582" height="504"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -102,7 +102,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <grid id="def2c" layout-manager="GridLayoutManager" row-count="13" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+              <grid id="def2c" layout-manager="GridLayoutManager" row-count="14" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                 <margin top="10" left="10" bottom="10" right="10"/>
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -138,7 +138,7 @@
                   </hspacer>
                   <component id="2da5a" class="javax.swing.JButton" binding="addConfigurationButton" default-binding="true">
                     <constraints>
-                      <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                      <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
                       <text value="Add configuration"/>
@@ -146,7 +146,7 @@
                   </component>
                   <hspacer id="d33d2">
                     <constraints>
-                      <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                      <grid row="13" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                   </hspacer>
                   <component id="81f23" class="javax.swing.JTextField" binding="proxyAddressField">
@@ -226,7 +226,9 @@
                         <preferred-size width="150" height="-1"/>
                       </grid>
                     </constraints>
-                    <properties/>
+                    <properties>
+                      <text value=""/>
+                    </properties>
                   </component>
                   <component id="31ddd" class="javax.swing.JLabel">
                     <constraints>
@@ -243,7 +245,9 @@
                         <preferred-size width="150" height="-1"/>
                       </grid>
                     </constraints>
-                    <properties/>
+                    <properties>
+                      <text value=""/>
+                    </properties>
                   </component>
                   <component id="58b1d" class="javax.swing.JLabel">
                     <constraints>
@@ -256,7 +260,7 @@
                   </component>
                   <vspacer id="309b3">
                     <constraints>
-                      <grid row="11" column="0" row-span="1" col-span="4" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                      <grid row="12" column="0" row-span="1" col-span="4" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                     </constraints>
                   </vspacer>
                   <component id="1bae4" class="javax.swing.JLabel">
@@ -278,13 +282,15 @@
                       </grid>
                     </constraints>
                   </vspacer>
-                  <component id="cec8f" class="javax.swing.JTextField">
+                  <component id="cec8f" class="javax.swing.JTextField" binding="customProfilePath">
                     <constraints>
                       <grid row="9" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>
                       </grid>
                     </constraints>
-                    <properties/>
+                    <properties>
+                      <text value=""/>
+                    </properties>
                   </component>
                   <component id="49629" class="javax.swing.JLabel">
                     <constraints>
@@ -295,7 +301,15 @@
                       <text value="Custom profile path"/>
                     </properties>
                   </component>
-                  <component id="a70aa" class="javax.swing.JTextField">
+                  <component id="6fc45" class="javax.swing.JCheckBox" binding="vpnRequiredCheckBox">
+                    <constraints>
+                      <grid row="11" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="VPN Required"/>
+                    </properties>
+                  </component>
+                  <component id="631f7" class="javax.swing.JTextField" binding="accesspasswordField">
                     <constraints>
                       <grid row="10" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>
@@ -303,13 +317,13 @@
                     </constraints>
                     <properties/>
                   </component>
-                  <component id="b2ae1" class="javax.swing.JLabel">
+                  <component id="c112" class="javax.swing.JLabel">
                     <constraints>
                       <grid row="10" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
                       <foreground color="-1447708"/>
-                      <text value="Proxy reminder on startup"/>
+                      <text value="Access Password"/>
                     </properties>
                   </component>
                 </children>

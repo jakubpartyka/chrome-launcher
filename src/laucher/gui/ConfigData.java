@@ -3,6 +3,9 @@ package laucher.gui;
 import laucher.data.Configuration;
 import javax.swing.*;
 
+/**
+ * Class for main table GUI view
+ */
 public class ConfigData implements Runnable{
 
     private JPanel mainPanel;
