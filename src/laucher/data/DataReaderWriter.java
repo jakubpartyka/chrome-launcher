@@ -113,7 +113,8 @@ public class DataReaderWriter {
         try {
             p.store(new FileWriter(".cl.cfg"),"Configuration File");
         } catch (IOException e) {
-            //todo implement GUI error message
+            JOptionPane.showMessageDialog(null,"Saving configuration failed!\nMessage: " + e.getMessage(),
+                    "Data save failure",JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }
