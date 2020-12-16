@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +48,31 @@ public class Configuration {
 
 
     public static void start(Configuration conf) {
+        // check if password needed to launch configuration
+        if (!conf.accessPassword.isBlank()){
+            JPanel panel = new JPanel();
+            JLabel label = new JLabel("Provide password:");
+            JPasswordField pass = new JPasswordField(10);
+            panel.add(label);
+            panel.add(pass);
+            panel.setPreferredSize(new Dimension(200,100));
+            String[] options = new String[]{"OK", "Cancel"};
+            int option = JOptionPane.showOptionDialog(null, panel, "Password required",
+                    JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
+                    null, options, options[1]);
+            if(option == 0) // pressing OK button
+            {
+                char[] password = pass.getPassword();
+                String provided = new String(password);
+                if(!provided.equals(conf.accessPassword))
+                    return;
+            }
+            else    // password verification cancelled
+                return;
+
+        }
+
+
         Proxy proxy = new Proxy();
 
         // set proxy
@@ -55,8 +81,8 @@ public class Configuration {
         ChromeOptions options = new ChromeOptions();
         options.setCapability("proxy", proxy);
 
-        // set user agent
-        if(conf.userAgent != null && !conf.userAgent.equals(""))
+        // SET USER AGENT
+        if(!conf.userAgent.isBlank())
             options.addArguments("--user-agent=\"" + conf.userAgent + "\"");
 
         // start driver and navigate to myip.com API address
