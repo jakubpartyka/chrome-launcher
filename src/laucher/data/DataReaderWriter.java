@@ -51,7 +51,7 @@ public class DataReaderWriter {
             String userAgent = p.getProperty("user_agent_" + i,null);
             String userAgentAlias = p.getProperty("user_agent_alias_" + i,null);
             boolean vpnRequired = Boolean.parseBoolean(p.getProperty("vpn_required_" + i,null));
-            String customProfileDirectory = p.getProperty("custom+profile_dir_" + i,null);
+            String customProfileDirectory = p.getProperty("custom_profile_dir_" + i,null);
             String accessPassword  = p.getProperty("access_password_" + i,null);
 
             // create new Configuration object
@@ -83,6 +83,10 @@ public class DataReaderWriter {
         p.setProperty("proxy_pass_" + conf.id,conf.proxyPass);
         p.setProperty("proxy_country_" + conf.id,conf.proxyCountry);
         p.setProperty("user_agent_" + conf.id,conf.userAgent);
+        p.setProperty("user_agent_alias_" + conf.id,conf.userAgentAlias);
+        p.setProperty("vpn_required_" + conf.id, String.valueOf(conf.vpnRequired));
+        p.setProperty("custom_profile_dir_" + conf.id,conf.customProfileDirectory);
+        p.setProperty("access_password_" + conf.id,conf.accessPassword);
 
         // write config to file
         p.store(new FileWriter(".cl.cfg"),"Configuration File");
@@ -101,10 +105,15 @@ public class DataReaderWriter {
         p.remove("proxy_pass_" + id);
         p.remove("proxy_country_" + id);
         p.remove("user_agent_" + id);
+        p.remove("user_agent_alias_" + id);
+        p.remove("vpn_required_" + id);
+        p.remove("custom_profile_dir_" + id);
+        p.remove("access_password_" + id);
 
         try {
             p.store(new FileWriter(".cl.cfg"),"Configuration File");
         } catch (IOException e) {
+            //todo implement GUI error message
             e.printStackTrace();
         }
     }
