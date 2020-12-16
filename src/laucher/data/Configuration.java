@@ -5,7 +5,6 @@ import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,17 +68,17 @@ public class Configuration {
             SwingUtilities.invokeLater(new ConfigData(conf));
     }
 
-    public String getProxyUser() {
-        return proxyUser;
-    }
-
-    public String getProxyPass() {
-        return proxyPass;
-    }
 
     @Override
     public String toString() {
         return alias;
+    }
+
+
+    // GETTERS
+
+    public String getProxyUser() {
+        return proxyUser;
     }
 
     public String getProxyInfo() {
@@ -98,6 +97,10 @@ public class Configuration {
         if(accessPassword.isBlank())
             return "not set";
         return "yes";
+    }
+
+    public String getProxyPass() {
+        return proxyPass;
     }
 
     public Object getUserAgentInfo() {

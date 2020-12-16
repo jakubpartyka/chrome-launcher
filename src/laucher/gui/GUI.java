@@ -134,18 +134,6 @@ public class GUI implements Runnable {
             return;
         }
 
-        //clear GUI fields
-        aliasField.setText("");
-        proxyAddressField.setText("");
-        proxyPortField.setText("");
-        proxyUserField.setText("");
-        proxyPasswordField.setText("");
-        userAgentField.setText("");
-        userAgentAliasField.setText("");
-        customProfilePath.setText("");
-        accessPasswordField.setText("");
-
-
         // create new configuration object
         Configuration configuration = new Configuration(
                 alias,proxyAddress,proxyPort,proxyUser,proxyPassword,proxyCountry,
@@ -162,6 +150,16 @@ public class GUI implements Runnable {
         // show info message
         JOptionPane.showMessageDialog(null,"Configuration added successfully","Configuration added",JOptionPane.INFORMATION_MESSAGE);
 
+        //clear GUI fields
+        aliasField.setText("");
+        proxyAddressField.setText("");
+        proxyPortField.setText("");
+        proxyUserField.setText("");
+        proxyPasswordField.setText("");
+        userAgentField.setText("");
+        userAgentAliasField.setText("");
+        customProfilePath.setText("");
+        accessPasswordField.setText("");
     }
 
 }
