@@ -128,6 +128,12 @@ public class GUI implements Runnable {
         String customProfileDirectory = customProfilePath.getText();
         String accessPassword = accessPasswordField.getText();
 
+        // validate data
+        if(alias.isBlank()){
+            JOptionPane.showMessageDialog(null,"Alias can't be null","Incorrect alias",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         //clear GUI fields
         aliasField.setText("");
         proxyAddressField.setText("");
@@ -136,31 +142,9 @@ public class GUI implements Runnable {
         proxyPasswordField.setText("");
         userAgentField.setText("");
         userAgentAliasField.setText("");
-        vpnRequiredCheckBox.setText("");
         customProfilePath.setText("");
         accessPasswordField.setText("");
 
-        // map empty values to null
-        if(alias.matches("^\\s+$"))
-            alias = null;
-        if(proxyAddress.matches("^\\s+$"))
-            proxyAddress = null;
-        if(proxyPort.matches("^\\s+$"))
-            proxyPort = null;
-        if(proxyUser.matches("^\\s+$"))
-            proxyUser = null;
-        if(proxyPassword.matches("^\\s+$"))
-            proxyPassword = null;
-        if(proxyCountry.matches("^\\s+$"))
-            proxyCountry = null;
-        if(userAgent.matches("^\\s+$"))
-            userAgent = null;
-        if(userAgentAlias.matches("^\\s+$"))
-            userAgentAlias = null;
-        if(customProfileDirectory.matches("^\\s+$"))
-            customProfileDirectory = null;
-        if(accessPassword.matches("^\\s+$"))
-            accessPassword = null;
 
         // create new configuration object
         Configuration configuration = new Configuration(

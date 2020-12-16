@@ -83,28 +83,28 @@ public class Configuration {
     }
 
     public String getProxyInfo() {
-        if(proxyUser != null)
-            return proxyCountry + " - " + proxyAddress;
-        return "none";
+        if(proxyUser.isBlank())
+            return "none";
+        return proxyCountry + " - " + proxyAddress;
     }
 
     public String getProfilePath() {
-        if(customProfileDirectory != null)
-            return customProfileDirectory;
-        return "not set";
+        if(customProfileDirectory.isBlank())
+            return "not set";
+        return customProfileDirectory;
     }
 
     public String isPasswordProtected() {
-        if(accessPassword != null)
-            return "yes";
-        return "not set";
+        if(accessPassword.isBlank())
+            return "not set";
+        return "yes";
     }
 
     public Object getUserAgentInfo() {
-        if(userAgentAlias != null && userAgent != null)
-            return userAgentAlias;
-        if(userAgentAlias == null && userAgent != null)
+        if(userAgent.isBlank())
+            return "not set";
+        if(userAgentAlias.isBlank())
             return "set, no alias";
-        return "not set";
+        return userAgentAlias;
     }
 }
