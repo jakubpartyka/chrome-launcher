@@ -27,7 +27,7 @@ public class GUI implements Runnable {
     private JCheckBox vpnRequiredCheckBox;
     private JTextField accessPasswordField;
     private JTextField customProfilePath;
-    private JTextField userAgentAlias;
+    private JTextField userAgentAliasField;
     private JFrame frame;
 
     private void initMainFrame() {
@@ -113,17 +113,59 @@ public class GUI implements Runnable {
         }
     }
 
+    @SuppressWarnings("DuplicatedCode")
     private void createNewConfiguration() throws IOException {
+        // read data from GUI
+        String alias = aliasField.getText();
+        String proxyAddress = proxyAddressField.getText();
+        String proxyPort = proxyPortField.getText();
+        String proxyUser = proxyUserField.getText();
+        String proxyPassword = proxyPasswordField.getText();
+        String proxyCountry = proxyCountryField.getText();
+        String userAgent = userAgentField.getText();
+        String userAgentAlias = userAgentAliasField.getText();
+        boolean vpnRequired = vpnRequiredCheckBox.isSelected();
+        String customProfileDirectory = customProfilePath.getText();
+        String accessPassword = accessPasswordField.getText();
+
+        //clear GUI fields
+        aliasField.setText("");
+        proxyAddressField.setText("");
+        proxyPortField.setText("");
+        proxyUserField.setText("");
+        proxyPasswordField.setText("");
+        userAgentField.setText("");
+        userAgentAliasField.setText("");
+        vpnRequiredCheckBox.setText("");
+        customProfilePath.setText("");
+        accessPasswordField.setText("");
+
+        // map empty values to null
+        if(alias.matches("^\\s+$"))
+            alias = null;
+        if(proxyAddress.matches("^\\s+$"))
+            proxyAddress = null;
+        if(proxyPort.matches("^\\s+$"))
+            proxyPort = null;
+        if(proxyUser.matches("^\\s+$"))
+            proxyUser = null;
+        if(proxyPassword.matches("^\\s+$"))
+            proxyPassword = null;
+        if(proxyCountry.matches("^\\s+$"))
+            proxyCountry = null;
+        if(userAgent.matches("^\\s+$"))
+            userAgent = null;
+        if(userAgentAlias.matches("^\\s+$"))
+            userAgentAlias = null;
+        if(customProfileDirectory.matches("^\\s+$"))
+            customProfileDirectory = null;
+        if(accessPassword.matches("^\\s+$"))
+            accessPassword = null;
+
         // create new configuration object
         Configuration configuration = new Configuration(
-                aliasField.getText(),
-                proxyAddressField.getText(),
-                proxyPortField.getText(),
-                proxyUserField.getText(),
-                proxyPasswordField.getText(),
-                proxyCountryField.getText(),
-                userAgentField.getText(),
-                userAgentAlias.getText(),vpnRequiredCheckBox.isSelected(),customProfilePath.getText(),accessPasswordField.getText()
+                alias,proxyAddress,proxyPort,proxyUser,proxyPassword,proxyCountry,
+                userAgent,userAgentAlias,vpnRequired,customProfileDirectory,accessPassword
         );
 
         // write configuration to file

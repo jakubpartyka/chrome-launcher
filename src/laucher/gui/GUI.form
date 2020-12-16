@@ -326,7 +326,7 @@
                       <text value="Access Password"/>
                     </properties>
                   </component>
-                  <component id="ac0a4" class="javax.swing.JTextField" binding="userAgentAlias">
+                  <component id="ac0a4" class="javax.swing.JTextField" binding="userAgentAliasField">
                     <constraints>
                       <grid row="9" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>
