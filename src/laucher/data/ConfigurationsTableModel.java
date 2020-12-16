@@ -21,11 +21,11 @@ public class ConfigurationsTableModel extends AbstractTableModel {
         Configuration conf = Configuration.configurationList.get(rowIndex);
         return switch (columnIndex) {
             case 0 -> conf.alias;
-            case 1 -> conf.proxyAddress;
-            case 2 -> conf.proxyPort;
-            case 3 -> conf.proxyUser;
-            case 4 -> conf.proxyPass;
-            case 5 -> conf.proxyCountry;
+            case 1 -> conf.getProxyInfo();
+            case 2 -> conf.getProfilePath();
+            case 3 -> conf.proxyRequired;
+            case 4 -> conf.isPasswordProtected();
+            case 5 -> conf.userAgentAlias;
             case 6 -> conf.userAgent;
             default -> "N/A";
         };

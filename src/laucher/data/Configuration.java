@@ -19,7 +19,7 @@ public class Configuration {
     String proxyUser;
     String proxyPass;
     String proxyCountry;
-    String userAgent;
+    String userAgent, userAgentAlias = null;
 
     boolean proxyRequired;
     String  customProfileDirectory;
@@ -71,5 +71,23 @@ public class Configuration {
     @Override
     public String toString() {
         return alias;
+    }
+
+    public String getProxyInfo() {
+        if(proxyUser != null)
+            return proxyCountry + " - " + proxyAddress;
+        return "none";
+    }
+
+    public String getProfilePath() {
+        if(customProfileDirectory != null)
+            return customProfileDirectory;
+        return "not set";
+    }
+
+    public String isPasswordProtected() {
+        if(accessPassword != null)
+            return "yes";
+        return "not set";
     }
 }
