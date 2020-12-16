@@ -42,13 +42,22 @@ public class DataReaderWriter {
             if(alias == null || alias.matches("^\\s*$"))
                 continue;
 
+            // read data from file
             String proxyAddress = p.getProperty("proxy_address_" + i,null);
             String proxyPort = p.getProperty("proxy_port_" + i,null);
             String proxyUser = p.getProperty("proxy_user_" + i,null);
             String proxyPass = p.getProperty("proxy_pass_" + i,null);
             String proxyCountry = p.getProperty("proxy_country_" + i,null);
             String userAgent = p.getProperty("user_agent_" + i,null);
-            Configuration configuration = new Configuration(alias,proxyAddress,proxyPort,proxyUser,proxyPass, proxyCountry, userAgent);
+            String userAgentAlias = p.getProperty("user_agent_alias_" + i,null);
+            boolean vpnRequired = Boolean.parseBoolean(p.getProperty("vpn_required_" + i,null));
+            String customProfileDirectory = p.getProperty("custom+profile_dir_" + i,null);
+            String accessPassword  = p.getProperty("access_password_" + i,null);
+
+            // create new Configuration object
+            Configuration configuration = new Configuration(alias,proxyAddress,proxyPort,proxyUser,
+                    proxyPass, proxyCountry, userAgent,userAgentAlias,vpnRequired,customProfileDirectory,accessPassword);
+
             configuration.id = i;
             Configuration.configurationList.add(configuration);
         }
