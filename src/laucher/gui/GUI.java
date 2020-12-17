@@ -29,6 +29,8 @@ public class GUI implements Runnable {
     private JTextField customProfilePath;
     private JTextField userAgentAliasField;
     private JCheckBox disableExtensionsCheckbox;
+    private JButton addButton;
+    private JButton cancelButton;
     private JFrame frame;
 
     private void initMainFrame() {
@@ -48,6 +50,14 @@ public class GUI implements Runnable {
         dataTable.getTableHeader().setFont(new Font("Monospaced", Font.BOLD, 12));
         dataTable.setRowHeight(dataTable.getRowHeight()+10);
 
+        tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI(){
+            @Override
+            protected int calculateTabAreaHeight(int tabPlacement, int horizRunCount, int maxTabHeight) {
+                return 0;
+            }
+            protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
+        });
+
         // adding components
         frame.add(mainPanel);
 
@@ -65,6 +75,7 @@ public class GUI implements Runnable {
         addConfigurationButton.addActionListener(e -> {
             try {
                 createNewConfiguration();
+                tabbedPane.setSelectedIndex(0);
                 } catch (IOException e1) {
                 e1.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Failed to create new profile configuration.\n"
@@ -96,6 +107,10 @@ public class GUI implements Runnable {
                 frame.dispose();
             }
         });
+
+        cancelButton.addActionListener(e -> tabbedPane.setSelectedIndex(0));
+
+        addButton.addActionListener(e -> tabbedPane.setSelectedIndex(1));
 
     }
 
