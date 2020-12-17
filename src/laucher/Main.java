@@ -31,7 +31,7 @@ public class Main {
             Thread.sleep(200);
 
         // in case that login thread failed but user did not authorize - exit
-        if(!login.isAuthorized()){
+        if (!login.isAuthorized()){
             JOptionPane.showMessageDialog(null,"User unauthorized","Access denied",JOptionPane.WARNING_MESSAGE);
             System.exit(1);
         }

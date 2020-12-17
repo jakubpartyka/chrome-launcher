@@ -23,7 +23,7 @@ public class Configuration {
     String proxyCountry;
     String userAgent, userAgentAlias;
 
-    boolean vpnRequired;
+    boolean vpnRequired, disableExtensions;
     String  customProfileDirectory;
     /**
      * Additional access-control layer. Password to be provided to launch or access config data.
@@ -33,7 +33,7 @@ public class Configuration {
     public Configuration(String alias, String proxyAddress, String proxyPort, String proxyUser,
                          String proxyPass, String proxyCountry, String userAgent,
                          String userAgentAlias, boolean vpnRequired, String customProfileDirectory,
-                         String accessPassword) {
+                         String accessPassword, boolean disableExtensions) {
         this.alias = alias;
         this.proxyAddress = proxyAddress;
         this.proxyPort = proxyPort;
@@ -45,6 +45,7 @@ public class Configuration {
         this.vpnRequired = vpnRequired;
         this.customProfileDirectory = customProfileDirectory;
         this.accessPassword = accessPassword;
+        this.disableExtensions = disableExtensions;
     }
 
 
@@ -96,6 +97,10 @@ public class Configuration {
         // start driver and navigate to myip.com API address
         WebDriver driver = new ChromeDriver(options);
         driver.get("https://api.myip.com");
+
+        //disable extensions if needed
+        if(conf.disableExtensions)
+            options.addArguments("--disable-extensions");   //todo display this in gui?
 
         // show proxy credentials field if present
         if(!conf.proxyPass.isBlank() && !conf.proxyUser.isBlank())

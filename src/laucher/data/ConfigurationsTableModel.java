@@ -24,8 +24,9 @@ public class ConfigurationsTableModel extends AbstractTableModel {
             case 1 -> conf.getProxyInfo();
             case 2 -> conf.getProfilePath();
             case 3 -> conf.vpnRequired;
-            case 4 -> conf.isPasswordProtected();
-            case 5 -> conf.getUserAgentInfo();
+            case 4 -> conf.disableExtensions;
+            case 5 -> conf.isPasswordProtected();
+            case 6 -> conf.getUserAgentInfo();
             default -> "N/D";
         };
     }
@@ -37,8 +38,9 @@ public class ConfigurationsTableModel extends AbstractTableModel {
             case 1 -> "Proxy";
             case 2 -> "Custom profile";
             case 3 -> "VPN required";
-            case 4 -> "Password protected";
-            case 5 -> "User agent";
+            case 4 -> "Ext. disabled";
+            case 5 -> "Password protected";
+            case 6 -> "User agent";
             default -> "Invalid column";
         };
     }

@@ -28,6 +28,7 @@ public class GUI implements Runnable {
     private JTextField accessPasswordField;
     private JTextField customProfilePath;
     private JTextField userAgentAliasField;
+    private JCheckBox disableExtensionsCheckbox;
     private JFrame frame;
 
     private void initMainFrame() {
@@ -127,6 +128,7 @@ public class GUI implements Runnable {
         boolean vpnRequired = vpnRequiredCheckBox.isSelected();
         String customProfileDirectory = customProfilePath.getText();
         String accessPassword = accessPasswordField.getText();
+        boolean disableExtensions = disableExtensionsCheckbox.isSelected();
 
         // validate data
         if(alias.isBlank()){
@@ -137,7 +139,7 @@ public class GUI implements Runnable {
         // create new configuration object
         Configuration configuration = new Configuration(
                 alias,proxyAddress,proxyPort,proxyUser,proxyPassword,proxyCountry,
-                userAgent,userAgentAlias,vpnRequired,customProfileDirectory,accessPassword
+                userAgent,userAgentAlias,vpnRequired,customProfileDirectory,accessPassword,disableExtensions
         );
 
         // write configuration to file
