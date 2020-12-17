@@ -110,11 +110,14 @@ public class GUI implements Runnable {
                 createNewConfiguration(alias,proxyAddress,proxyPort,proxyUser,proxyPassword,
                         proxyCountry,userAgent,userAgentAlias,vpnRequired,customProfileDirectory,accessPassword,disableExtensions);
                 tabbedPane.setSelectedIndex(0);
-                } catch (IOException e1) {
+
+                // adjust column size
+                resizeColumnWidth(dataTable);
+                }
+            catch (IOException e1) {
                 e1.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Failed to create new profile configuration.\n"
                         + e1.getMessage(), "Data write failure", JOptionPane.ERROR_MESSAGE);
-
                 return;
             }
 
@@ -208,6 +211,9 @@ public class GUI implements Runnable {
 
             // unset temporary configuration
             temporaryConfiguration = null;
+
+            // adjust column size
+            resizeColumnWidth(dataTable);
 
             // switch GUI view
             tabbedPane.setSelectedIndex(0);
