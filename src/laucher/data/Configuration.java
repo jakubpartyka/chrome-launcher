@@ -15,20 +15,20 @@ public class Configuration {
     public static List<Configuration> configurationList = new ArrayList<>();
 
     int id;
-    String alias;
-    String proxyAddress;
-    String proxyPort;
-    String proxyUser;
-    String proxyPass;
-    String proxyCountry;
-    String userAgent, userAgentAlias;
+    public String alias;
+    public String proxyAddress;
+    public String proxyPort;
+    public String proxyUser;
+    public String proxyPass;
+    public String proxyCountry;
+    public String userAgent, userAgentAlias;
 
-    boolean vpnRequired, disableExtensions;
-    String  customProfileDirectory;
+    public boolean vpnRequired, disableExtensions;
+    public String  customProfileDirectory;
     /**
      * Additional access-control layer. Password to be provided to launch or access config data.
      */
-    String  accessPassword;
+    public String  accessPassword;
 
     public Configuration(String alias, String proxyAddress, String proxyPort, String proxyUser,
                          String proxyPass, String proxyCountry, String userAgent,
@@ -121,7 +121,7 @@ public class Configuration {
      * @param conf configuration object to which access is being verified
      * @return true if provided password matches conf accessPassword
      */
-    private static boolean showPasswordDialog(Configuration conf) {
+    public static boolean showPasswordDialog(Configuration conf) {
         JPanel panel = new JPanel();
         JLabel label = new JLabel("Password:");
         JPasswordField pass = new JPasswordField(10);
@@ -142,12 +142,24 @@ public class Configuration {
             return false;
     }
 
-
     @Override
     public String toString() {
-        return alias;
+        return "Configuration{" +
+                "id=" + id +
+                ", alias='" + alias + '\'' +
+                ", proxyAddress='" + proxyAddress + '\'' +
+                ", proxyPort='" + proxyPort + '\'' +
+                ", proxyUser='" + proxyUser + '\'' +
+                ", proxyPass='" + proxyPass + '\'' +
+                ", proxyCountry='" + proxyCountry + '\'' +
+                ", userAgent='" + userAgent + '\'' +
+                ", userAgentAlias='" + userAgentAlias + '\'' +
+                ", vpnRequired=" + vpnRequired +
+                ", disableExtensions=" + disableExtensions +
+                ", customProfileDirectory='" + customProfileDirectory + '\'' +
+                ", accessPassword='" + accessPassword + '\'' +
+                '}';
     }
-
 
     // GETTERS
 

@@ -32,7 +32,7 @@ public class GUI implements Runnable {
     private JButton addButton;
     private JButton cancelButton;
     private JTextField editAlias;
-    private JTextField editProxyAlias;
+    private JTextField editProxyAddress;
     private JTextField editProxyPort;
     private JTextField editProxyUser;
     private JTextField editProxyPassword;
@@ -128,11 +128,37 @@ public class GUI implements Runnable {
         cancelButton2.addActionListener(e -> tabbedPane.setSelectedIndex(0));
 
         editButton.addActionListener(e -> {
+            Configuration conf = getConfig(dataTable.getSelectedRow());
+
+            if(!conf.accessPassword.isBlank()){
+                boolean authorized = Configuration.showPasswordDialog(conf);
+                if(!authorized){
+                    JOptionPane.showMessageDialog(null,"Authorization failed","Access denied",JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+            }
+
+            prepareEditTab(conf);
             tabbedPane.setSelectedIndex(2);
         });
 
         addButton.addActionListener(e -> tabbedPane.setSelectedIndex(1));
 
+    }
+
+    private void prepareEditTab(Configuration conf) {
+        editAlias.setText(conf.alias);
+        editProxyAddress.setText(conf.proxyAddress);
+        editProxyPort.setText(conf.proxyPort);
+        editProxyUser.setText(conf.proxyUser);
+        editProxyPassword.setText(conf.proxyPass);
+        editProxyCountry.setText(conf.proxyCountry);
+        editUserAgent.setText(conf.userAgent);
+        editUserAgentAlias.setText(conf.userAgentAlias);
+        editProfilePath.setText(conf.customProfileDirectory);
+        editAccessPassword.setText(conf.accessPassword);
+        editVpnRequired.setSelected(conf.vpnRequired);
+        editDisableExtensions.setSelected(conf.disableExtensions);
     }
 
     public void resizeColumnWidth(JTable table) {
@@ -198,6 +224,10 @@ public class GUI implements Runnable {
         userAgentAliasField.setText("");
         customProfilePath.setText("");
         accessPasswordField.setText("");
+    }
+
+    private Configuration getConfig(int rowIndex){
+        return Configuration.configurationList.get(rowIndex);
     }
 
 }
