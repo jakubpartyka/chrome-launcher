@@ -22,7 +22,6 @@ public class GUI implements Runnable {
     private JTextField proxyUserField;
     private JTextField proxyPasswordField;
     private JTextField proxyCountryField;
-    private JButton deleteSelectedButton;
     private JTextField userAgentField;
     private JCheckBox vpnRequiredCheckBox;
     private JTextField accessPasswordField;
@@ -124,15 +123,6 @@ public class GUI implements Runnable {
 
             //clear GUI fields
             clearFields();
-        });
-
-        deleteSelectedButton.addActionListener(e -> {
-            int [] selectedRows = dataTable.getSelectedRows();
-            if(selectedRows.length == 0)
-                return;
-            int choice = JOptionPane.showConfirmDialog(null,"Delete " + selectedRows.length + " entries?","Confirm action",JOptionPane.OK_CANCEL_OPTION);
-            if(choice == 0)
-                ((ConfigurationsTableModel)dataTable.getModel()).delete(selectedRows);
         });
 
         startBrowserButton.addActionListener(e -> {
