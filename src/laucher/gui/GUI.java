@@ -149,6 +149,12 @@ public class GUI implements Runnable {
         cancelButton2.addActionListener(e -> tabbedPane.setSelectedIndex(0));
 
         editButton.addActionListener(e -> {
+            // check if any rows selected
+            if(dataTable.getSelectedRows().length == 0){
+                JOptionPane.showMessageDialog(null,"Select configuration to edit","Selection empty",JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+
             Configuration conf = getConfig(dataTable.getSelectedRow());
 
             if(!conf.accessPassword.isBlank()){
