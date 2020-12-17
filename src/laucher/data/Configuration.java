@@ -100,7 +100,7 @@ public class Configuration {
 
         //disable extensions if needed
         if(conf.disableExtensions)
-            options.addArguments("--disable-extensions");   //todo display this in gui?
+            options.addArguments("--disable-extensions");
 
         // show proxy credentials field if present
         if(!conf.proxyPass.isBlank() && !conf.proxyUser.isBlank())
