@@ -94,18 +94,26 @@ public class Configuration {
                 options.addArguments("--user-data-dir=" + dir.getAbsolutePath());
         }
 
-        // start driver and navigate to myip.com API address
-        WebDriver driver = new ChromeDriver(options);
-        driver.get("https://api.myip.com");
-
         //disable extensions if needed
         if(conf.disableExtensions)
             options.addArguments("--disable-extensions");
 
-        // show proxy credentials field if present
-        if(!conf.proxyPass.isBlank() && !conf.proxyUser.isBlank())
-            SwingUtilities.invokeLater(new ConfigData(conf));
-    }
+
+        // start driver and navigate to myip.com API address
+        try {
+            WebDriver driver = new ChromeDriver(options);
+            driver.get("https://api.myip.com");
+
+            // show proxy credentials field if present
+            if(!conf.proxyPass.isBlank() && !conf.proxyUser.isBlank())
+                SwingUtilities.invokeLater(new ConfigData(conf));
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Failed to start browser instance. Error message:\n"+e.getMessage(),
+                    "Launch failed",JOptionPane.ERROR_MESSAGE);
+        }
+
+
+        }
 
     /**
      * Shows password dialog.
