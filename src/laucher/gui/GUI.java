@@ -52,6 +52,7 @@ public class GUI implements Runnable {
 
     private void initMainFrame() {
         frame = new JFrame();
+
         // set frame properties
         frame.setSize(800, 600);
         frame.setMinimumSize(new Dimension(300, 300));
@@ -68,6 +69,7 @@ public class GUI implements Runnable {
         dataTable.setRowHeight(dataTable.getRowHeight() + 10);
         dataTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
+        // hide tabbed pane header
         tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI(){
             @Override
             protected int calculateTabAreaHeight(int tabPlacement, int horizRunCount, int maxTabHeight) {
@@ -217,7 +219,7 @@ public class GUI implements Runnable {
 
     @SuppressWarnings("DuplicatedCode")
     private void clearFields() {
-        //clear GUI fields
+        //clear GUI fields add tab
         aliasField.setText("");
         proxyAddressField.setText("");
         proxyPortField.setText("");
@@ -229,7 +231,7 @@ public class GUI implements Runnable {
         accessPasswordField.setText("");
 
 
-        //clear GUI fields
+        //clear GUI fields edit tab
         editAlias.setText("");
         editProxyAddress.setText("");
         editProxyPort.setText("");
