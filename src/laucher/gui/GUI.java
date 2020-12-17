@@ -43,10 +43,12 @@ public class GUI implements Runnable {
     private JTextField editAccessPassword;
     private JCheckBox editVpnRequired;
     private JCheckBox editDisableExtensions;
-    private JButton updateConfiguration;
+    private JButton updateConfigurationButton;
     private JButton cancelButton2;
     private JButton editButton;
     private JFrame frame;
+
+    Configuration temporaryConfiguration;
 
     private void initMainFrame() {
         frame = new JFrame();
@@ -89,13 +91,32 @@ public class GUI implements Runnable {
     private void setActionListeners() {
         addConfigurationButton.addActionListener(e -> {
             try {
-                createNewConfiguration();
+                String alias = aliasField.getText();
+                String proxyAddress = proxyAddressField.getText();
+                String proxyPort = proxyPortField.getText();
+                String proxyUser = proxyUserField.getText();
+                String proxyPassword = proxyPasswordField.getText();
+                String proxyCountry = proxyCountryField.getText();
+                String userAgent = userAgentField.getText();
+                String userAgentAlias = userAgentAliasField.getText();
+                boolean vpnRequired = vpnRequiredCheckBox.isSelected();
+                String customProfileDirectory = customProfilePath.getText();
+                String accessPassword = accessPasswordField.getText();
+                boolean disableExtensions = disableExtensionsCheckbox.isSelected();
+
+                createNewConfiguration(alias,proxyAddress,proxyPort,proxyUser,proxyPassword,
+                        proxyCountry,userAgent,userAgentAlias,vpnRequired,customProfileDirectory,accessPassword,disableExtensions);
                 tabbedPane.setSelectedIndex(0);
                 } catch (IOException e1) {
                 e1.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Failed to create new profile configuration.\n"
                         + e1.getMessage(), "Data write failure", JOptionPane.ERROR_MESSAGE);
+
+                return;
             }
+
+            //clear GUI fields
+            clearFields();
         });
 
         deleteSelectedButton.addActionListener(e -> {
@@ -138,12 +159,68 @@ public class GUI implements Runnable {
                 }
             }
 
+            temporaryConfiguration = conf;
+
             prepareEditTab(conf);
             tabbedPane.setSelectedIndex(2);
         });
 
+        updateConfigurationButton.addActionListener(e -> {
+            // read data from gui
+            String alias = editAlias.getText();
+            String proxyAddress = editProxyAddress.getText();
+            String proxyPort = editProxyPort.getText();
+            String proxyUser = editProxyUser.getText();
+            String proxyPassword = editProxyPassword.getText();
+            String proxyCountry = editProxyCountry.getText();
+            String userAgent = editUserAgent.getText();
+            String userAgentAlias = editUserAgentAlias.getText();
+            boolean vpnRequired = editVpnRequired.isSelected();
+            String customProfileDirectory = editProfilePath.getText();
+            String accessPassword = editAccessPassword.getText();
+            boolean disableExtensions = editDisableExtensions.isSelected();
+
+            // create new configuration object
+            try {
+                createNewConfiguration(alias,proxyAddress,proxyPort,proxyUser,proxyPassword,proxyCountry,userAgent,userAgentAlias,vpnRequired,customProfileDirectory,accessPassword,disableExtensions);
+            } catch (IOException e1){
+                e1.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Failed to create new profile configuration.\n"
+                        + e1.getMessage(), "Data write failure", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            clearFields();
+        });
+
         addButton.addActionListener(e -> tabbedPane.setSelectedIndex(1));
 
+    }
+
+    @SuppressWarnings("DuplicatedCode")
+    private void clearFields() {
+        //clear GUI fields
+        aliasField.setText("");
+        proxyAddressField.setText("");
+        proxyPortField.setText("");
+        proxyUserField.setText("");
+        proxyPasswordField.setText("");
+        userAgentField.setText("");
+        userAgentAliasField.setText("");
+        customProfilePath.setText("");
+        accessPasswordField.setText("");
+
+
+        //clear GUI fields
+        editAlias.setText("");
+        editProxyAddress.setText("");
+        editProxyPort.setText("");
+        editProxyUser.setText("");
+        editProxyCountry.setText("");
+        editUserAgent.setText("");
+        editUserAgentAlias.setText("");
+        editProfilePath.setText("");
+        editAccessPassword.setText("");
     }
 
     private void prepareEditTab(Configuration conf) {
@@ -177,21 +254,7 @@ public class GUI implements Runnable {
     }
 
     @SuppressWarnings("DuplicatedCode")
-    private void createNewConfiguration() throws IOException {
-        // read data from GUI
-        String alias = aliasField.getText();
-        String proxyAddress = proxyAddressField.getText();
-        String proxyPort = proxyPortField.getText();
-        String proxyUser = proxyUserField.getText();
-        String proxyPassword = proxyPasswordField.getText();
-        String proxyCountry = proxyCountryField.getText();
-        String userAgent = userAgentField.getText();
-        String userAgentAlias = userAgentAliasField.getText();
-        boolean vpnRequired = vpnRequiredCheckBox.isSelected();
-        String customProfileDirectory = customProfilePath.getText();
-        String accessPassword = accessPasswordField.getText();
-        boolean disableExtensions = disableExtensionsCheckbox.isSelected();
-
+    private void createNewConfiguration(String alias, String proxyAddress, String proxyPort, String proxyUser, String proxyPassword, String proxyCountry, String userAgent, String userAgentAlias, boolean vpnRequired, String customProfileDirectory, String accessPassword, boolean disableExtensions) throws IOException {
         // validate data
         if(alias.isBlank()){
             JOptionPane.showMessageDialog(null,"Alias can't be null","Incorrect alias",JOptionPane.ERROR_MESSAGE);
@@ -213,17 +276,6 @@ public class GUI implements Runnable {
 
         // show info message
         JOptionPane.showMessageDialog(null,"Configuration added successfully","Configuration added",JOptionPane.INFORMATION_MESSAGE);
-
-        //clear GUI fields
-        aliasField.setText("");
-        proxyAddressField.setText("");
-        proxyPortField.setText("");
-        proxyUserField.setText("");
-        proxyPasswordField.setText("");
-        userAgentField.setText("");
-        userAgentAliasField.setText("");
-        customProfilePath.setText("");
-        accessPasswordField.setText("");
     }
 
     private Configuration getConfig(int rowIndex){
