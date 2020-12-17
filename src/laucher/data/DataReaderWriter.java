@@ -111,6 +111,7 @@ public class DataReaderWriter {
         p.remove("vpn_required_" + id);
         p.remove("custom_profile_dir_" + id);
         p.remove("access_password_" + id);
+        p.remove("disable_extensions_" + id);
 
         try {
             p.store(new FileWriter(".cl.cfg"),"Configuration File");
