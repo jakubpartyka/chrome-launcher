@@ -45,6 +45,7 @@ public class GUI implements Runnable {
     private JCheckBox editDisableExtensions;
     private JButton updateConfiguration;
     private JButton cancelButton2;
+    private JButton editButton;
     private JFrame frame;
 
     private void initMainFrame() {
@@ -123,6 +124,12 @@ public class GUI implements Runnable {
         });
 
         cancelButton.addActionListener(e -> tabbedPane.setSelectedIndex(0));
+
+        cancelButton2.addActionListener(e -> tabbedPane.setSelectedIndex(0));
+
+        editButton.addActionListener(e -> {
+            tabbedPane.setSelectedIndex(2);
+        });
 
         addButton.addActionListener(e -> tabbedPane.setSelectedIndex(1));
 
