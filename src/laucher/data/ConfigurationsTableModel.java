@@ -51,4 +51,9 @@ public class ConfigurationsTableModel extends AbstractTableModel {
         Configuration.configurationList.removeAll(toRemove);
         this.fireTableDataChanged();
     }
+
+    public void delete(Configuration conf){
+        Configuration.configurationList.remove(conf);
+        this.fireTableDataChanged();
+    }
 }

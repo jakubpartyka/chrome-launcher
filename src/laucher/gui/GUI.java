@@ -159,6 +159,7 @@ public class GUI implements Runnable {
                 }
             }
 
+            // set temporary configuration object
             temporaryConfiguration = conf;
 
             prepareEditTab(conf);
@@ -191,6 +192,16 @@ public class GUI implements Runnable {
             }
 
             clearFields();
+
+            // delete configuration from file and GUI
+            ((ConfigurationsTableModel)dataTable.getModel()).delete(temporaryConfiguration);
+            DataReaderWriter.removeConfiguration(temporaryConfiguration);
+
+            // unset temporary configuration
+            temporaryConfiguration = null;
+
+            // switch GUI view
+            tabbedPane.setSelectedIndex(0);
         });
 
         addButton.addActionListener(e -> tabbedPane.setSelectedIndex(1));
