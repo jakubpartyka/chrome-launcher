@@ -46,6 +46,7 @@ public class GUI implements Runnable {
     private JButton updateConfigurationButton;
     private JButton cancelButton2;
     private JButton editButton;
+    private JButton deleteButton;
     private JFrame frame;
 
     Configuration temporaryConfiguration;
@@ -220,6 +221,21 @@ public class GUI implements Runnable {
         });
 
         addButton.addActionListener(e -> tabbedPane.setSelectedIndex(1));
+
+        deleteButton.addActionListener(e -> {
+            //confirm deletion
+            int option = JOptionPane.showConfirmDialog(null,"Are you sure you want to delete this configuration?","Confirm deletion",JOptionPane.OK_CANCEL_OPTION,JOptionPane.INFORMATION_MESSAGE);
+            if(option == 0){
+                DataReaderWriter.removeConfiguration(temporaryConfiguration);
+                ((ConfigurationsTableModel)dataTable.getModel()).delete(temporaryConfiguration);
+
+                // unset temporary configuration
+                temporaryConfiguration = null;
+
+                // switch GUI panel
+                tabbedPane.setSelectedIndex(0);
+            }
+        });
 
     }
 
