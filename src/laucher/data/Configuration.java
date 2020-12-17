@@ -89,6 +89,7 @@ public class Configuration {
                 JOptionPane.showMessageDialog(null,"Failed to set up profile directory." +
                         "\nExists: " + dir.exists() +
                         "\nIs Directory: " + dir.isDirectory());
+                return;
             }
             else
                 options.addArguments("--user-data-dir=" + dir.getAbsolutePath());
