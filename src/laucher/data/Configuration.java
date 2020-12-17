@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,9 +76,22 @@ public class Configuration {
             options.setCapability("proxy", proxy);
         }
 
-        // SET USER AGENT
+        // INIT USER AGENT IF SET
         if(!conf.userAgent.isBlank())
             options.addArguments("--user-agent=\"" + conf.userAgent + "\"");
+
+        // CHOOSE PROFILE DIR IF SET
+        if(!conf.customProfileDirectory.isBlank()){
+            File dir = new File(conf.customProfileDirectory);
+            //check if custom profile directory is set correctly
+            if(!dir.exists() || !dir.isDirectory()){
+                JOptionPane.showMessageDialog(null,"Failed to set up profile directory." +
+                        "\nExists: " + dir.exists() +
+                        "\nIs Directory: " + dir.isDirectory());
+            }
+            else
+                options.addArguments("--user-data-dir=" + dir.getAbsolutePath());
+        }
 
         // start driver and navigate to myip.com API address
         WebDriver driver = new ChromeDriver(options);
