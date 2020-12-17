@@ -48,20 +48,32 @@ public class Configuration {
 
 
     public static void start(Configuration conf) {
+        // check if password needed
         if(!conf.accessPassword.isBlank()){
             boolean userVerified = showPasswordDialog(conf);
-            if(!userVerified)
+            if(!userVerified) {
+                JOptionPane.showMessageDialog(null,"Authorization failed","Access denied",JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+        }
+
+        // vpn prompt if necessary
+        if(conf.vpnRequired){
+            int option = JOptionPane.showConfirmDialog(null,"VPN connection is required to use this configuration.\n" +
+                    "Please make sure your connection is secure before proceeding.","Reminder", JOptionPane.OK_CANCEL_OPTION);
+            if(option != 0)
                 return;
         }
 
-
-        Proxy proxy = new Proxy();
-
-        // set proxy
-        proxy.setHttpProxy(conf.proxyAddress + ":" + conf.proxyPort);
-        proxy.setSslProxy(conf.proxyAddress + ":" + conf.proxyPort);
         ChromeOptions options = new ChromeOptions();
-        options.setCapability("proxy", proxy);
+
+        // INIT PROXY IF SET
+        if(!conf.proxyAddress.isBlank() && !conf.proxyPort.isBlank()) {
+            Proxy proxy = new Proxy();
+            proxy.setHttpProxy(conf.proxyAddress + ":" + conf.proxyPort);
+            proxy.setSslProxy(conf.proxyAddress + ":" + conf.proxyPort);
+            options.setCapability("proxy", proxy);
+        }
 
         // SET USER AGENT
         if(!conf.userAgent.isBlank())
@@ -72,7 +84,7 @@ public class Configuration {
         driver.get("https://api.myip.com");
 
         // show proxy credentials field if present
-        if(conf.proxyPass != null && !conf.proxyPass.matches("^\\s*$") && conf.proxyUser != null && !conf.proxyUser.matches("^\\s*$"))
+        if(!conf.proxyPass.isBlank() && !conf.proxyUser.isBlank())
             SwingUtilities.invokeLater(new ConfigData(conf));
     }
 
@@ -83,7 +95,7 @@ public class Configuration {
      */
     private static boolean showPasswordDialog(Configuration conf) {
         JPanel panel = new JPanel();
-        JLabel label = new JLabel("Provide password:");
+        JLabel label = new JLabel("Password:");
         JPasswordField pass = new JPasswordField(10);
         panel.add(label);
         panel.add(pass);
