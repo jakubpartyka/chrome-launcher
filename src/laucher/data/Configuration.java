@@ -130,8 +130,8 @@ public class Configuration {
         panel.setPreferredSize(new Dimension(200,100));
         String[] options = new String[]{"OK", "Cancel"};
         int option = JOptionPane.showOptionDialog(null, panel, "Password required",
-                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
-                null, options, options[1]);
+                JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE,
+                null, options, options[0]);
         if(option == 0) // pressing OK button
         {
             char[] password = pass.getPassword();
