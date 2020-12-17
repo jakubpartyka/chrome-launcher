@@ -31,6 +31,20 @@ public class GUI implements Runnable {
     private JCheckBox disableExtensionsCheckbox;
     private JButton addButton;
     private JButton cancelButton;
+    private JTextField editAlias;
+    private JTextField editProxyAlias;
+    private JTextField editProxyPort;
+    private JTextField editProxyUser;
+    private JTextField editProxyPassword;
+    private JTextField editProxyCountry;
+    private JTextField editUserAgent;
+    private JTextField editUserAgentAlias;
+    private JTextField editProfilePath;
+    private JTextField editAccessPassword;
+    private JCheckBox editVpnRequired;
+    private JCheckBox editDisableExtensions;
+    private JButton updateConfiguration;
+    private JButton cancelButton2;
     private JFrame frame;
 
     private void initMainFrame() {
