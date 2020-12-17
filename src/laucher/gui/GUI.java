@@ -65,7 +65,8 @@ public class GUI implements Runnable {
         dataTable.setForeground(Color.WHITE);
         resizeColumnWidth(dataTable);
         dataTable.getTableHeader().setFont(new Font("Monospaced", Font.BOLD, 12));
-        dataTable.setRowHeight(dataTable.getRowHeight()+10);
+        dataTable.setRowHeight(dataTable.getRowHeight() + 10);
+        dataTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI(){
             @Override
