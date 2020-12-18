@@ -25,15 +25,17 @@ public class Main {
 
         // SHOW LOGIN
         Login login = new Login(DataReaderWriter.getPassword());
-        Thread loginThread = new Thread(login);
-        loginThread.start();
-        while (loginThread.isAlive())
-            Thread.sleep(200);
+        if(!DataReaderWriter.getPassword().isBlank()) {
+            Thread loginThread = new Thread(login);
+            loginThread.start();
+            while (loginThread.isAlive())
+                Thread.sleep(200);
 
-        // in case that login thread failed but user did not authorize - exit
-        if (!login.isAuthorized()){
-            JOptionPane.showMessageDialog(null,"User unauthorized","Access denied",JOptionPane.WARNING_MESSAGE);
-            System.exit(1);
+            // in case that login thread failed but user did not authorize - exit
+            if (!login.isAuthorized()) {
+                JOptionPane.showMessageDialog(null, "User unauthorized", "Access denied", JOptionPane.WARNING_MESSAGE);
+                System.exit(1);
+            }
         }
 
         // START MAIN GUI
