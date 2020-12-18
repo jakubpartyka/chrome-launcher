@@ -2,10 +2,14 @@ package launcher.gui;
 
 import launcher.data.Encryptor;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 @SuppressWarnings("BusyWait")
 public class Login implements Runnable {
@@ -18,6 +22,7 @@ public class Login implements Runnable {
     private JPanel loginPanel;
     private JPasswordField passwordField;
     private JLabel infoLabel;
+    private JLabel imageLabel;
 
     public Login(String password){
         this.password = password;
@@ -77,6 +82,14 @@ public class Login implements Runnable {
         frame.setLocationRelativeTo(null);
         frame.setAlwaysOnTop(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        try {
+            BufferedImage icon = ImageIO.read(new File("/path/icon.png"));
+            ImageIcon imageIcon = new ImageIcon(new ImageIcon(icon).getImage().getScaledInstance(100,100,Image.SCALE_SMOOTH));
+            imageLabel.setIcon(imageIcon);
+        } catch (IOException ignored) {
+        }
+
         frame.setVisible(true);
     }
 
