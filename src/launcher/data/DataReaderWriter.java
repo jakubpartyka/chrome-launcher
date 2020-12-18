@@ -1,4 +1,4 @@
-package laucher.data;
+package launcher.data;
 
 import javax.swing.*;
 import java.io.FileReader;

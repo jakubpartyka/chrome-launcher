@@ -1,4 +1,4 @@
-package laucher.data;
+package launcher.data;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.Arrays;

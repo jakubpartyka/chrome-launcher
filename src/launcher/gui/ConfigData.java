@@ -1,6 +1,6 @@
-package laucher.gui;
+package launcher.gui;
 
-import laucher.data.Configuration;
+import launcher.data.Configuration;
 import javax.swing.*;
 
 /**

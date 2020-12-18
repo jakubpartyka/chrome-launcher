@@ -1,6 +1,6 @@
-package laucher.data;
+package launcher.data;
 
-import laucher.gui.ConfigData;
+import launcher.gui.ConfigData;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

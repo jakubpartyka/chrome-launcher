@@ -1,4 +1,4 @@
-package laucher.data;
+package launcher.data;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;

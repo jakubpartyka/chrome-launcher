@@ -1,9 +1,9 @@
-package laucher;
+package launcher;
 
-import laucher.data.Configuration;
-import laucher.data.DataReaderWriter;
-import laucher.gui.GUI;
-import laucher.gui.Login;
+import launcher.data.Configuration;
+import launcher.data.DataReaderWriter;
+import launcher.gui.GUI;
+import launcher.gui.Login;
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;

@@ -1,9 +1,9 @@
-package laucher.gui;
+package launcher.gui;
 
-import laucher.data.Configuration;
-import laucher.data.ConfigurationsTableModel;
-import laucher.data.DataReaderWriter;
-import laucher.data.Encryptor;
+import launcher.data.Configuration;
+import launcher.data.ConfigurationsTableModel;
+import launcher.data.DataReaderWriter;
+import launcher.data.Encryptor;
 
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;

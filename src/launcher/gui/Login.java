@@ -1,6 +1,6 @@
-package laucher.gui;
+package launcher.gui;
 
-import laucher.data.Encryptor;
+import launcher.data.Encryptor;
 
 import javax.swing.*;
 import java.awt.*;
