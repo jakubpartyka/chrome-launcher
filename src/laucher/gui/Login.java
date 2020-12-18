@@ -1,5 +1,7 @@
 package laucher.gui;
 
+import laucher.data.Encryptor;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -33,7 +35,7 @@ public class Login implements Runnable {
             }
 
             // verify password
-            if(userPassword.toString().equals(password)) {
+            if(Encryptor.hashMatch(userPassword.toString(),password)) {
                 // password correct ; user authorized
                 this.authorized = true;
                 frame.dispose();

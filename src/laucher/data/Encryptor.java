@@ -6,7 +6,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class Encryptor {
 
-    public boolean hashMatch(String input, String originalHash){
+    public static boolean hashMatch(String input, String originalHash){
         try {
             String hashed = encryptSHA256(input);
             return hashed.equals(originalHash);
