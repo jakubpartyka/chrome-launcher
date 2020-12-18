@@ -3,6 +3,8 @@ package laucher.gui;
 import laucher.data.Configuration;
 import laucher.data.ConfigurationsTableModel;
 import laucher.data.DataReaderWriter;
+import laucher.data.Encryptor;
+
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
@@ -107,6 +109,9 @@ public class GUI implements Runnable {
                 String accessPassword = accessPasswordField.getText();
                 boolean disableExtensions = disableExtensionsCheckbox.isSelected();
 
+                // hash password
+                accessPassword = Encryptor.encryptSHA256(accessPassword);
+
                 createNewConfiguration(alias,proxyAddress,proxyPort,proxyUser,proxyPassword,
                         proxyCountry,userAgent,userAgentAlias,vpnRequired,customProfileDirectory,accessPassword,disableExtensions);
                 tabbedPane.setSelectedIndex(0);
@@ -183,6 +188,9 @@ public class GUI implements Runnable {
             String customProfileDirectory = editProfilePath.getText();
             String accessPassword = editAccessPassword.getText();
             boolean disableExtensions = editDisableExtensions.isSelected();
+
+            //hash password
+            accessPassword = Encryptor.encryptSHA256(accessPassword);
 
             // create new configuration object
             try {
@@ -265,7 +273,7 @@ public class GUI implements Runnable {
         editUserAgent.setText(conf.userAgent);
         editUserAgentAlias.setText(conf.userAgentAlias);
         editProfilePath.setText(conf.customProfileDirectory);
-        editAccessPassword.setText(conf.accessPassword);
+        editAccessPassword.setText(Encryptor.getLastPassword());
         editVpnRequired.setSelected(conf.vpnRequired);
         editDisableExtensions.setSelected(conf.disableExtensions);
     }

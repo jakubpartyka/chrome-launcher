@@ -134,9 +134,9 @@ public class Configuration {
                 null, options, options[0]);
         if(option == 0) // pressing OK button
         {
-            char[] password = pass.getPassword();
-            String provided = new String(password);
-            return provided.equals(conf.accessPassword);
+            String provided = new String(pass.getPassword());
+            Encryptor.setLastPassword(provided);
+            return Encryptor.hashMatch(provided,conf.accessPassword);
         }
         else    // password verification cancelled
             return false;
