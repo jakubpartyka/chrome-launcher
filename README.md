@@ -5,4 +5,4 @@ Provides ability to organize and edit multiple Chrome Browser configurations foc
 Possibility to define custom user-agent identifier for enchanced anonimity. 
 
 Password protected access to user interface.
-Condiguration data are kept in hidden config file. 
+Configuration data are kept in a .cfg file. Password to access program and configuration-specific passwords are stored encrypted using SHA-256.  
