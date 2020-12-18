@@ -15,6 +15,8 @@ public class Encryptor {
     }
 
     public static String encryptSHA256(String originalString) {
+        if(originalString.isBlank())
+            return "";
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(originalString.getBytes(StandardCharsets.UTF_8));
