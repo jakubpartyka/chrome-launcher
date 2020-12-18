@@ -5,6 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class Encryptor {
+    private static String lastPassword;
 
     public static boolean hashMatch(String input, String originalHash){
         String hashed = encryptSHA256(input);
@@ -29,5 +30,13 @@ public class Encryptor {
         } catch (NoSuchAlgorithmException e){
             return null;
         }
+    }
+
+    public static void setLastPassword(String lastPassword) {
+        Encryptor.lastPassword = lastPassword;
+    }
+
+    public static String getLastPassword() {
+        return lastPassword;
     }
 }
