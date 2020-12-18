@@ -6,6 +6,15 @@ import java.security.NoSuchAlgorithmException;
 
 public class Encryptor {
 
+    public boolean hashMatch(String input, String originalHash){
+        try {
+            String hashed = encryptSHA256(input);
+            return hashed.equals(originalHash);
+        } catch (NoSuchAlgorithmException e){
+            return false;
+        }
+    }
+
     private static String encryptSHA256(String originalString) throws NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         byte[] hash = digest.digest(originalString.getBytes(StandardCharsets.UTF_8));
