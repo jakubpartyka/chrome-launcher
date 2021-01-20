@@ -212,4 +212,13 @@ public class Configuration {
             return "set, no alias";
         return userAgentAlias;
     }
+
+    public Object getStartPage() {
+        if(startPage == null || startPage.isBlank())
+            return "not set";
+        if(startPage.startsWith("https://"))
+            return startPage.substring(8);
+        else
+            return startPage;
+    }
 }

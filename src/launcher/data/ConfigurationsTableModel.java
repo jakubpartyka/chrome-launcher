@@ -13,7 +13,7 @@ public class ConfigurationsTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 6;
+        return 7;
     }
 
     @Override
@@ -23,10 +23,11 @@ public class ConfigurationsTableModel extends AbstractTableModel {
             case 0 -> conf.alias;
             case 1 -> conf.getProxyInfo();
             case 2 -> conf.getProfilePath();
-            case 3 -> conf.vpnRequired;
-            case 4 -> conf.disableExtensions;
-            case 5 -> conf.isPasswordProtected();
-            case 6 -> conf.getUserAgentInfo();
+            case 3 -> conf.getStartPage();
+            case 4 -> conf.vpnRequired;
+            case 5 -> conf.disableExtensions;
+            case 6 -> conf.isPasswordProtected();
+            case 7 -> conf.getUserAgentInfo();
             default -> "N/D";
         };
     }
@@ -37,10 +38,11 @@ public class ConfigurationsTableModel extends AbstractTableModel {
             case 0 -> "Alias";
             case 1 -> "Proxy";
             case 2 -> "Custom profile";
-            case 3 -> "VPN required";
-            case 4 -> "Ext. disabled";
-            case 5 -> "Password protected";
-            case 6 -> "User agent";
+            case 3 -> "Start page";
+            case 4 -> "VPN required";
+            case 5 -> "Ext. disabled";
+            case 6 -> "Password protected";
+            case 7 -> "User agent";
             default -> "Invalid column";
         };
     }
