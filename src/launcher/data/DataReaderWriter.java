@@ -54,10 +54,11 @@ public class DataReaderWriter {
             String customProfileDirectory = p.getProperty("custom_profile_dir_" + i,null);
             String accessPassword  = p.getProperty("access_password_" + i,null);
             boolean disableExtensions = Boolean.parseBoolean(p.getProperty("disable_extensions_" + i,null));
+            String startPage = (p.getProperty("start_page_" + i,null));
 
             // create new Configuration object
             Configuration configuration = new Configuration(alias,proxyAddress,proxyPort,proxyUser,
-                    proxyPass, proxyCountry, userAgent,userAgentAlias,vpnRequired,customProfileDirectory,accessPassword,disableExtensions);
+                    proxyPass, proxyCountry, userAgent,userAgentAlias,vpnRequired,customProfileDirectory,accessPassword,disableExtensions,startPage);
 
             configuration.id = i;
             Configuration.configurationList.add(configuration);
@@ -89,6 +90,7 @@ public class DataReaderWriter {
         p.setProperty("custom_profile_dir_" + conf.id,conf.customProfileDirectory);
         p.setProperty("access_password_" + conf.id,conf.accessPassword);
         p.setProperty("disable_extensions_" + conf.id, String.valueOf(conf.disableExtensions));
+        p.setProperty("start_page_" + conf.id, conf.startPage);
 
         // write config to file
         p.store(new FileWriter(".cl.cfg"),"Configuration File");
@@ -112,6 +114,7 @@ public class DataReaderWriter {
         p.remove("custom_profile_dir_" + id);
         p.remove("access_password_" + id);
         p.remove("disable_extensions_" + id);
+        p.remove("start_page_" + id);
 
         try {
             p.store(new FileWriter(".cl.cfg"),"Configuration File");

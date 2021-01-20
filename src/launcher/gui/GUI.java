@@ -48,6 +48,8 @@ public class GUI implements Runnable {
     private JButton cancelButton2;
     private JButton editButton;
     private JButton deleteButton;
+    private JTextField startPageField;
+    private JTextField editStartPage;
     private JFrame frame;
 
     Configuration temporaryConfiguration;
@@ -108,12 +110,13 @@ public class GUI implements Runnable {
                 String customProfileDirectory = customProfilePath.getText();
                 String accessPassword = accessPasswordField.getText();
                 boolean disableExtensions = disableExtensionsCheckbox.isSelected();
+                String startPage = startPageField.getText();
 
                 // hash password
                 accessPassword = Encryptor.encryptSHA256(accessPassword);
 
                 createNewConfiguration(alias,proxyAddress,proxyPort,proxyUser,proxyPassword,
-                        proxyCountry,userAgent,userAgentAlias,vpnRequired,customProfileDirectory,accessPassword,disableExtensions);
+                        proxyCountry,userAgent,userAgentAlias,vpnRequired,customProfileDirectory,accessPassword,disableExtensions,startPage);
                 tabbedPane.setSelectedIndex(0);
 
                 // adjust column size
@@ -188,13 +191,14 @@ public class GUI implements Runnable {
             String customProfileDirectory = editProfilePath.getText();
             String accessPassword = editAccessPassword.getText();
             boolean disableExtensions = editDisableExtensions.isSelected();
+            String startPage = editStartPage.getText();
 
             //hash password
             accessPassword = Encryptor.encryptSHA256(accessPassword);
 
             // create new configuration object
             try {
-                createNewConfiguration(alias,proxyAddress,proxyPort,proxyUser,proxyPassword,proxyCountry,userAgent,userAgentAlias,vpnRequired,customProfileDirectory,accessPassword,disableExtensions);
+                createNewConfiguration(alias,proxyAddress,proxyPort,proxyUser,proxyPassword,proxyCountry,userAgent,userAgentAlias,vpnRequired,customProfileDirectory,accessPassword,disableExtensions,startPage);
             } catch (IOException e1){
                 e1.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Failed to create new profile configuration.\n"
@@ -261,6 +265,7 @@ public class GUI implements Runnable {
         editUserAgentAlias.setText("");
         editProfilePath.setText("");
         editAccessPassword.setText("");
+        startPageField.setText("");
     }
 
     private void prepareEditTab(Configuration conf) {
@@ -276,6 +281,7 @@ public class GUI implements Runnable {
         editAccessPassword.setText(Encryptor.getLastPassword());
         editVpnRequired.setSelected(conf.vpnRequired);
         editDisableExtensions.setSelected(conf.disableExtensions);
+        editStartPage.setText(conf.startPage);
     }
 
     public void resizeColumnWidth(JTable table) {
@@ -294,7 +300,7 @@ public class GUI implements Runnable {
     }
 
     @SuppressWarnings("DuplicatedCode")
-    private void createNewConfiguration(String alias, String proxyAddress, String proxyPort, String proxyUser, String proxyPassword, String proxyCountry, String userAgent, String userAgentAlias, boolean vpnRequired, String customProfileDirectory, String accessPassword, boolean disableExtensions) throws IOException {
+    private void createNewConfiguration(String alias, String proxyAddress, String proxyPort, String proxyUser, String proxyPassword, String proxyCountry, String userAgent, String userAgentAlias, boolean vpnRequired, String customProfileDirectory, String accessPassword, boolean disableExtensions, String startPage) throws IOException {
         // validate data
         if(alias.isBlank()){
             JOptionPane.showMessageDialog(null,"Alias can't be null","Incorrect alias",JOptionPane.ERROR_MESSAGE);
@@ -304,7 +310,7 @@ public class GUI implements Runnable {
         // create new configuration object
         Configuration configuration = new Configuration(
                 alias,proxyAddress,proxyPort,proxyUser,proxyPassword,proxyCountry,
-                userAgent,userAgentAlias,vpnRequired,customProfileDirectory,accessPassword,disableExtensions
+                userAgent,userAgentAlias,vpnRequired,customProfileDirectory,accessPassword,disableExtensions, startPage
         );
 
         // write configuration to file

@@ -22,6 +22,7 @@ public class Configuration {
     public String proxyPass;
     public String proxyCountry;
     public String userAgent, userAgentAlias;
+    public String startPage;
 
     public boolean vpnRequired, disableExtensions;
     public String  customProfileDirectory;
@@ -33,7 +34,7 @@ public class Configuration {
     public Configuration(String alias, String proxyAddress, String proxyPort, String proxyUser,
                          String proxyPass, String proxyCountry, String userAgent,
                          String userAgentAlias, boolean vpnRequired, String customProfileDirectory,
-                         String accessPassword, boolean disableExtensions) {
+                         String accessPassword, boolean disableExtensions, String startPage) {
         this.alias = alias;
         this.proxyAddress = proxyAddress;
         this.proxyPort = proxyPort;
@@ -46,6 +47,7 @@ public class Configuration {
         this.customProfileDirectory = customProfileDirectory;
         this.accessPassword = accessPassword;
         this.disableExtensions = disableExtensions;
+        this.startPage = startPage;
     }
 
 
@@ -103,13 +105,26 @@ public class Configuration {
         // start driver and navigate to myip.com API address
         try {
             WebDriver driver = new ChromeDriver(options);
-            driver.get("https://api.myip.com");
+
+            String address = "https://api.myip.com";
+
+            if(conf.startPage != null && !conf.startPage.isBlank())
+                address = conf.startPage;
+
+            if(!address.startsWith("https://"))
+                address = "https://" + address;
+            driver.get(address);
 
             // show proxy credentials field if present
             if(!conf.proxyPass.isBlank() && !conf.proxyUser.isBlank())
                 SwingUtilities.invokeLater(new ConfigData(conf));
         } catch (Exception e){
-            JOptionPane.showMessageDialog(null,"Failed to start browser instance. Error message:\n"+e.getMessage(),
+            String errorMessage = e.getMessage();
+            //check if it's error name not resolved exception
+            if (e.getMessage().contains("ERR_NAME_NOT_RESOLVED"))
+                errorMessage = "Incorrect URL specified";
+
+            JOptionPane.showMessageDialog(null,"Failed to start browser instance. Error message:\n" + errorMessage,
                     "Launch failed",JOptionPane.ERROR_MESSAGE);
             return false;
         }
