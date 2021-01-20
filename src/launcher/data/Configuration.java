@@ -49,13 +49,13 @@ public class Configuration {
     }
 
 
-    public static void start(Configuration conf) {
+    public static boolean start(Configuration conf) {
         // check if password needed
         if(!conf.accessPassword.isBlank()){
             boolean userVerified = showPasswordDialog(conf);
             if(!userVerified) {
                 JOptionPane.showMessageDialog(null,"Authorization failed","Access denied",JOptionPane.WARNING_MESSAGE);
-                return;
+                return false;
             }
         }
 
@@ -64,7 +64,7 @@ public class Configuration {
             int option = JOptionPane.showConfirmDialog(null,"VPN connection is required to use this configuration.\n" +
                     "Please make sure your connection is secure before proceeding.","Reminder", JOptionPane.OK_CANCEL_OPTION);
             if(option != 0)
-                return;
+                return false;
         }
 
         ChromeOptions options = new ChromeOptions();
@@ -89,7 +89,7 @@ public class Configuration {
                 JOptionPane.showMessageDialog(null,"Failed to set up profile directory." +
                         "\nExists: " + dir.exists() +
                         "\nIs Directory: " + dir.isDirectory());
-                return;
+                return false;
             }
             else
                 options.addArguments("--user-data-dir=" + dir.getAbsolutePath());
@@ -111,9 +111,10 @@ public class Configuration {
         } catch (Exception e){
             JOptionPane.showMessageDialog(null,"Failed to start browser instance. Error message:\n"+e.getMessage(),
                     "Launch failed",JOptionPane.ERROR_MESSAGE);
+            return false;
         }
 
-
+        return true;
         }
 
     /**

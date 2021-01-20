@@ -138,9 +138,9 @@ public class GUI implements Runnable {
             }
 
             Configuration configuration = Configuration.configurationList.get(dataTable.getSelectedRow());
-            Configuration.start(configuration);
+            boolean started = Configuration.start(configuration);
 
-            if (exitLauncherOnceBrowserCheckBox.isSelected()){
+            if (started && exitLauncherOnceBrowserCheckBox.isSelected()){
                 frame.setVisible(false);
                 frame.dispose();
             }
